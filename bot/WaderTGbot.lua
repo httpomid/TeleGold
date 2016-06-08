@@ -478,188 +478,180 @@ will return group ban list
 
 *Only owner can use res,setowner,promote,demote and log commands
 
-channel:@WaderTGTeam
+@TeleGold_Team
 ]],
-	help_text_super =[[
-WaderTG SuperGroup Commands :
+	help_text_super =[[لیست راهنما ربات🔱TeleGold🔱
 =========================
-#info
-About the SuperGroup info
+🔱 #info
+مشخصات سوپر گروه
 =========================
-#infull
-About the you infull
+🔱 #infull
+مشخصات دقیق فرد
 =========================
-#admins
-SuperGroup admins list
+🔱 #admins
+لیست ادمین های گروه
 =========================
-#setadmin
-Set SuperGroup admins
+🔱 #setadmin
+ارتقا درجه به ادمینی 
 =========================
-#owner
-Show owner of SuperGroup
+🔱 #owner
+نمایش مدیر گروه
 =========================
-#setowner
-Set the SuperGroup owner
+🔱 #setowner
+انتخاب مدیر گروه
 =========================
-#modlist
-Show moderators list
+🔱 #modlist
+لیست مدیران گروه
 =========================
-#bots
-List bots in SuperGroup
+🔱 #bots
+لیست ربات های موجود گروه
 =========================
-#bot[lock,unlock]
-Bot[lock,unlock] the SuperGroup
+🔱 #bot[lock,unlock]
+قفل کردن و باز کردن ربات در گروه
 =========================
-#who
-List all users in SuperGroup
+🔱 #who
+لیست اعضای گروه 
 =========================
-#block
-kick a user from SuperGroup
-+Added user to blocked list+
+🔱 #block
+بلاک کردن و آنبلاک کردن فردی از گروه
 =========================
-#ban
-Ban user from the SuperGroup
-+Only with[id+user]+
+🔱 #ban
+مسدود کردن شخصی از گروه
 =========================
-#unban
-Unban user from the SuperGroup
-+Only with[id+user]+
+🔱 #unban
+صلب مسدودیت از گروه
 =========================
-#id
-SuperGroup ID or user ID
-+For user ID:#id @username or reply by: #id+
+🔱 #id
+دریافت آیدی سوپر گروه
 =========================
-#id from
-Get ID of user massage is forwarded from
+🔱 #id from
+دریافت آیدی صاحب فوروارد شده پیام
 =========================
-#kickme
-Kick you from SuperGroup
+🔱 #kickme
+خروج از گروه
 =========================
-#promote[@username+id]
-Promote a SuperGroup moderator
+🔱 #promote[یوزر+آیدی]
+مدیر کردن شخص
 =========================
-#demote[@username+id]
-Demote a SuperGroup moderator
+🔱 #demote[یوزر+آیدی]
+حذف مدیریت شخص از گروه
 =========================
-#setname [group name]
-Set the chat name
+🔱 #setname [نام گروه]
+تعویض نام گروه
 =========================
-#setphoto
-Set the chat photo
-+Then photo and send the+
+🔱 #setphoto
+تعویض عکس گروه
 =========================
-#setrules[rules]
-Set the chat rules
+🔱 #setrules[قوانین]
+تنظیم قوانین گروه
 =========================
-#setabout
-Set the chat about
+🔱 #setabout
+ثبت توضیحات گروه
 =========================
-#save [value] <text>
-Set extra info for chat
+🔱 #save [عدد] <متن>
+یادداشت متن‌های گروه
 =========================
-#get[value]
-Retrieves extra info for chat by value
+🔱 #get[عدد]
+مشاهده یک متن گروه 
 =========================
-#newlink
-Create group link
+🔱 #newlink
+تعویض لینک گروه
 =========================
-#link
-Group the link
+🔱 #link
+لینک گروه
 =========================
-#linkpv
-Send SuperGroup link private
+🔱 #linkpv
+ارسال لینک در پی وی (پریوایت)
 =========================
-#rules
-Chat the rules
+🔱 #rules
+قوانین گروه
 =========================
-#lock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
-Lock SuperGroup settings
+🔱 #lock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
+قفل موارد ارسالی بالا
 =========================
-#unlock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
-Unlock SuperGroup settings
+🔱 #unlock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
+باز کردن موارد ارسالی بالا
 =========================
-#mute[all+audio+gifs+photo+video+text+service]
-Mute SuperGroup massage types
+🔱 #mute[all+audio+gifs+photo+video+text+service]
+عدم اجازه ارسال موارد بالا که شامل: صدا، لینک، و... میباشد.
 =========================
-#unmute[all+audio+gifs+photo+video+text+service]
-Unmute SuperGroup massage types
+🔱 #unmute[all+audio+gifs+photo+video+text+service]
+اجازه موارد بالا که شامل: صدا، لینک، و... میباشد.
 =========================
-#setflood[value]
-Set[value] as flood sensitivity
+🔱 #setflood[عدد]
+تنظیم میزان حساسیت به اسپم
 =========================
-#settins
-SuperGroup settings
+🔱 #settins
+نمایش تنظیمات گروه
 =========================
-#muteslist
-SuperGroup mutes
+🔱 #muteslist
+لیست افراد بی صدا
 =========================
-#muteuser[@username+id]
-Mute a user in SuperGroup
-+#muteuser[@username+id]remove mutelist+
+🔱 #muteuser[یوزر+آیدی]
+بیصدا کردن شخص صاحب آیدی و بلعکس
 =========================
-#mutelist
-SuperGroup muted user list
+🔱 #mutelist
+لیست افراد بیصدا شده
 =========================
-#banlist
-SuperGroup ban list
+🔱 #banlist
+لیست مسدود شدگان گروه
 =========================
-#clean[rules+about+modlist+mutelist]
-Cleaned
+🔱 #clean[rules+about+modlist+mutelist]
+برای پاک کردن موارد بالا
 =========================
-#del
-Deletes a massage by reply
+🔱 #del
+پاک کردن یک پیام با رپیلی
 =========================
-#public[yes+no]
-Set SuperGroup visibility in pm #chats or #chatlist commands
+🔱 #public[yes | no]
+برای عمومی یا شخصی کردن گروه
 =========================
-#res[@username]
-Returns user name and id by @username
+🔱 #res[نام کاربری]
+گرفتن اطلاعات صاحب آیدی
 =========================
-#log
-Returns SuperGroup logs
+🔱 #log
+لوگ گروه
 =========================
-#addword[text]
-Added the badword
-+If the desired word is cleared+
+🔱 #addword[کلمه زشت]
+اضافه کردن به کلمات رکیک
 =========================
-#badwords
-SuperGroup badword list
+🔱 #badwords
+لیست کلمات رکیک
 =========================
-#rw[text]
-clear[text]from list badword
+🔱 #rw[کلمه زشت]
+برای پاک کردن کلمه زشت مورد نظر از لیست
 =========================
-#clearbadwords
-Cleaned badword list
+🔱 #clearbadwords
+برای حذف کردن کلیه کلمات رکیک
 =========================
-#clantag[tag]
-Specifications clan a door clsh of clan
+🔱 #clantag[تگ کلن که شامل کد است]
+برای مشخصات کلن کلش او کلنس
 =========================
-#music[truk name]
-Find songs to
+🔱 #music[نام آهنگ یا خاننده]
+پیدا کردن موزیک مورد نظر
 =========================
-#me
-Returns your specifications
+🔱 #me
+برای نمایش دادن اطلاعات خود
 =========================
-#tophoto
-Become stickers to photos
+🔱 #tophoto
+برای تبدیل استیکر به عکس
 =========================
-#tosticker
-Turn photos into stikers
+🔱 #tosticker
+برای تبدیل عکس به استیکر
 =========================
-#conv[text]
-Text to photos
+🔱 #conv[متن مورد نظر به لاتین]
+برای تبدیل متن به عکس
 =========================
-#sticker[text]
-Text-to-stickers
+🔱 #sticker[متن مورد نظر به لاتین]
+برای تبدیل متن به استیکر
 =========================
-#wai
-To show office user
+🔱 #wai
+برای مشخص کردن رتبه افراد در ربات
 =========================
-#voice[text]
-Text-to-voice
+🔱 #voice[متن مورد نظر به لاتین]
+برای تبدیل متن لاتین به صدا استفاده میشود.
 =========================
-*Only from markes "!" , "/" , "#" use*
-Channel:@WaderTGTeam
+میتوانید بجای # از / و ! نیز استفاده کنید.
+🔱 @TeleGold_Team 🔱
 ]],
   }
   serialize_to_file(config, './data/config.lua')
