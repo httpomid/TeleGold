@@ -1,20 +1,13 @@
---[[
-
-#
-#     @WaderTGTeam
-#   @WaderTG
-#      
-
-]]
+--by @TeleGold_Team
 local function addword(msg, name)
     local hash = 'chat:'..msg.to.id..':badword'
     redis:hset(hash, name, 'newword')
-    return "added the badword:\n\n>"..name
+    return "🔱 کلمه‌ی فیلتر شده:\n"..name
 end
 
 local function get_variables_hash(msg)
 
-    return 'chat:'..msg.to.id..':badword'
+    return 'chat:'..msg.to.id..'🔱 کلمه‌ی فیلتر شده:'
 
 end 
 
@@ -75,13 +68,13 @@ function clear_commandsbad(msg, cmd_name)
   --Save on redis  
   local hash = get_variables_hash(msg)
   redis:hdel(hash, cmd_name)
-  return ''..cmd_name..' clear'
+  return ''..cmd_name..' با موفقیت از لیست کلمات فیلتر شده حذف شد.🔱'
 end
 
 local function run(msg, matches)
   if matches[2] == 'addword' then
   if not is_momod(msg) then
-   return 'only for moderators'
+   return '🔱 فقط برای مدیران امکان پذیر است!!!🔱'
   end
   local name = string.sub(matches[3], 1, 50)
 
