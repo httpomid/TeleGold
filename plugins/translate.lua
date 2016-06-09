@@ -66,5 +66,4 @@ return {
 }
 
 end
---@WaderTGTeam
---@WaderTGTeam
+--by @TeleGold_Team
