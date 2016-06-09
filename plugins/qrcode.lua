@@ -35,7 +35,7 @@ local function qr(receiver, text, color, bgcolor)
   local response, code, headers = http.request(url)
 
   if code ~= 200 then
-    return "Oops! Error: " .. code
+    return "🔱 ظاهرا مشکلی پیش اومده است. 🔱:" .. code
   end
 
   if #response > 0 then
@@ -43,7 +43,7 @@ local function qr(receiver, text, color, bgcolor)
  return
 
   end
-  return "Oops! Something strange happened :("
+  return "🔱 اتفاق غیر قابل پیش بینی افتاد لطفا با دقت بیشتر سعی کنید! 🔱"
 end
 
 local function run(msg, matches)
@@ -77,3 +77,4 @@ return {
   },
   run = run
 }
+--by @TeleGold_Team
