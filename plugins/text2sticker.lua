@@ -1,30 +1,47 @@
 do
 
-local function send_title(cb_extra, success, result)
-  if success then
-   send_msg(cb_extra[1], cb_extra[2], ok_cb, false)
- end
-end
-
 local function run(msg, matches)
-  local eq = URL.escape(matches[1])
-
-  local url = "http://latex.codecogs.com/png.download?"
-    .."\\dpi{400}%20\\LARGE%20"..eq
+  local eq = URL.escape(matches[2])
+local w = "640"
+local h = "200"
+local txtsize = "62"
+local txtclr = "ff2e4357"
+if matches[3] then 
+  txtclr = matches[3]
+end
+if matches[4] then 
+  txtsize = matches[4]
+  end
+  if matches[5] and matches[6] then 
+  w = matches[5]
+  h = matches[6]
+  end
+  local url = "http://8pic.ir/images/xliu0q8ewjyzo03wzyae.jpg?blur=150&w="..w.."&h="..h.."&fit=crop&txt="..eq.."&txtsize="..txtsize.."&txtclr="..txtclr.."&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium&mono=ff6598cc"
 
   local receiver = get_receiver(msg)
-  local title = "Edit LaTeX on www.codecogs.com/eqnedit.php?latex="..eq
-  local file = download_to_file(url,'tex.webp')
-      send_document('chat#id'..msg.to.id, file, ok_cb , false)
+  if matches[1] == "*" then 
+  send_photo_from_url(receiver, url, send_title, {receiver, title})
+else
+local  file = download_to_file(url,'text.webp')
+ send_document('channel#id'..msg.to.id, file, ok_cb , false)
+end
 end
 
 return {
-  description = "Convert LaTeX equation to image",
+  description = "Convert Text to Image",
   usage = {
-    "!tex [equation]: Convert LaTeX equation to image"
+    "/conv (txt) : convert txt to img"
   },
   patterns = {
-    "^[!/#]sticker (.+)$",
+    "^[!#/]sticker(*) (.+)$",
+    "^[!#/](sticker) (.+)$",
+    "^[!#/]sticker(*) (.+) (.+)$",
+    "^[!/#]sticker (3) (.+) (.+) (.+)$",
+        "^[!/#]sticker(*)2 (.+) (.+)$",
+        "^[!/#]sticker (2) (.+) (.+)$",
+    "^[!/#]sticker(*)3 (.+) (.+) (.+)$", 
+    "^[!/#]sticker(*)4 (.+) (.+) (.+) (.+) (.+)$",
+    "^[!#/]sticker (4) (.+) (.+) (.+) (.+) (.+)$"
   },
   run = run
 }
