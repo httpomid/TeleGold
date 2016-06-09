@@ -20,7 +20,7 @@ local function run(msg, matches)
    send_location(get_receiver(msg), jdat.lat, jdat.lon, ok_cb, false)
    return text
   else
-   return "مقدار وارد شد صحیح نیست"
+   return "مقدار وارد شد صحیح نیست 🔱"
   end
  elseif matches[1]:lower() == "ping" then
   if matches[2] == "." then
@@ -28,7 +28,7 @@ local function run(msg, matches)
   else
    local cmd = io.popen("ping -c1 "..matches[2]):read('*all')
    if cmd == nil or cmd == "" or not cmd then
-    return "مقدار وارد شد صحیح نیست"
+    return "مقدار وارد شد صحیح نیست 🔱"
    else
     local char1 = cmd:find('data.')+5
     local char2 = cmd:find('\n\n')
@@ -47,7 +47,7 @@ local function run(msg, matches)
   else
    local getip = http.request("http://umbrella.shayan-soft.ir/get/umbrella"..matches[2]..".config")
    if getip == "not found" then
-    return "توکن وارد شده صحیح نیست"
+    return "توکن وارد شده صحیح نیست 🔱"
    else
     return "آی پی شخص مورد نظر:\n"..getip
    end
