@@ -9,15 +9,15 @@ local info = 'نام : '..msg.from.first_name..'\n'
 ..'شماره تلفن : +'..(msg.from.phone or 'نامشخص')..'\n'
 ..'نام کاربری : @'..(msg.from.username or 'ندارد')..'\n'
 ..'آیدی گروه : '..msg.to.id..'\n'
-..'نام گروه : '..msg.to.title..'\n🔱 @TeleGold_Team 🔱'
+..'نام گروه : '..msg.to.title..'\n🔱 @TeleGold_Team 🔱\n‌'
 
 reply_msg(reply_id, info, ok_cb, false)
 end
 
 return {
 patterns = {
-"^(من)",
-"^[!/#]me"
+"^(من)$",
+"^[!/#]me$"
 --create by @TeleGold_Team
 },
 run = run
