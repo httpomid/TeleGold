@@ -1,9 +1,4 @@
---[[
-#
-#     @WaderTGTeam
-#  @WaderTG
-#      
-]] 
+
 
 local access_token = "3084249803.280d5d7.999310365c8248f8948ee0f6929c2f02" -- your api key
 local function instagramUser(msg, query)
@@ -11,7 +6,7 @@ local function instagramUser(msg, query)
 	local url = "https://api.instagram.com/v1/users/search?q="..URL.escape(query).."&access_token="..access_token
 	local jstr, res = https.request(url)
 	if res ~= 200 then
-		return "No Connection"
+		return "🔱 با عرض پوزش ارتباط بر قرار نشد! 🔱"
     end
 	local jdat = json:decode(jstr)
 	if #jdat.data == 0 then
@@ -60,7 +55,7 @@ local function instagramMedia(msg, query)
 	local url = "https://api.instagram.com/v1/media/shortcode/"..URL.escape(query).."?access_token="..access_token
 	local jstr, res = https.request(url)
 	if res ~= 200 then
-		return "No Connection"
+		return "🔱 با عرض پوزش ارتباط برقرار نشد! 🔱"
     end
 	local jdat = json:decode(jstr)
 	if jdat.meta.error_message then
@@ -70,16 +65,16 @@ local function instagramMedia(msg, query)
 	local data = ''
 	if jdat.data.caption then
 	      data = jdat.data.caption
-	      text = text.."Username: "..data.from.username:upper().."\n\n"
+	      text = text.."🔱 یوزر کاربری: "..data.from.username:upper().."\n\n"
 		  text = text..data.from.full_name.."\n\n"
 		  text = text..data.text.."\n\n"
-		  text = text.."Like Count: "..jdat.data.likes.count.."\n"
+		  text = text.."🔱 تعداد لایک: "..jdat.data.likes.count.."\n"
     else
 	      text = text.."Username: "..jdat.data.user.username:upper().."\n"
-		  text = text.."Name: "..jdat.data.user.full_name.."\n"
-		  text = text.."Like Count: "..jdat.data.likes.count.."\n"
+		  text = text.."🔱 نام: "..jdat.data.user.full_name.."\n"
+		  text = text.."🔱 تعداد لایک: "..jdat.data.likes.count.."\n"
 	end
-	text = text.."\n@WaderTGTeam"
+	text = text.."\n🔱 TeleGold_Team 🔱\n‌"
 	send_msg(receiver,text,ok_cb,false)
 end
 local function run(msg, matches)
@@ -96,10 +91,11 @@ end
 return {
    patterns = {
    "^[!/#]([Ii]nsta) ([Hh]ttps://www.instagram.com/p/)([^%s]+)$",
+   "^[!/#]([Ii]nsta) ([Hh]ttps://www.instagram.com/_u/)([^%s]+)$",
    "^[!/#]([Ii]nsta) ([Hh]ttps://instagram.com/p/)([^%s]+)$",
    "^[!/#]([Ii]nsta) ([Hh]ttp://www.instagram.com/p/)([^%s]+)$",
    "^[!/#]([Ii]nsta) ([Hh]ttp://instagram.com/p/)([^%s]+)$",
-   "^[!/#]([Ii]nsta) ([^%s]+)$",
+   "^[!/#]([Ii]nsta) ([^%s]+)$"
    },
    run = run
 }
