@@ -1,23 +1,24 @@
 do
---create by WaderTG ID CHANNEL : @WaderTGTeam
+--create by @TeleGold_Team
 function run(msg, matches)
 local reply_id = msg['id']
 
-local info = '#Name : '..msg.from.first_name..'\n===================\n'
-..'#Last name : '..(msg.from.last_name or '')..'\n===================\n'
-..'#Id : '..msg.from.id..'\n===================\n'
-..'#Phone : +'..(msg.from.phone or '')..'\n===================\n'
-..'#Username : telegram.me/'..(msg.from.username or '')..'\n===================\n'
-..'#Group Id : '..msg.to.id..'\n===================\n'
-..'#Group name : '..msg.to.title..'\n===================\n@WaderTGTeam'
+local info = 'نام : '..msg.from.first_name..'\n'
+..'فامیل : '..(msg.from.last_name or 'ندارد.')..'\n'
+..'آیدی : '..msg.from.id..'\n'
+..'شماره تلفن : +'..(msg.from.phone or 'نامشخص')..'\n'
+..'نام کاربری : @'..(msg.from.username or 'ندارد')..'\n'
+..'آیدی گروه : '..msg.to.id..'\n'
+..'نام گروه : '..msg.to.title..'\n🔱 @TeleGold_Team 🔱'
 
 reply_msg(reply_id, info, ok_cb, false)
 end
 
 return {
 patterns = {
+"^(من)",
 "^[!/#]me"
---create by WaderTG ID CHANNEL : @WaderTGTeam
+--create by @TeleGold_Team
 },
 run = run
 }
