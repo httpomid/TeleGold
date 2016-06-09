@@ -19,12 +19,7 @@ local function run(msg, matches)
 end
 
 return {
-  patterns = {
-    "^[#!/]([Ww]ai)$",
-     "^([Ww]ai)$"
-"^من کیم$",
-"^من کیم؟$"
-   },
+  patterns = {"^[#!/]([Ww]ai)$",},
   run = run
 }
 end 
