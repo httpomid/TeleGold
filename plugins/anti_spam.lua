@@ -1,9 +1,8 @@
---An empty table for solving multiple kicking problem(thanks to @topkecleon )
 kicktable = {}
 
 do
 
-local TIME_CHECK = 2 -- seconds
+local TIME_CHECK = 3 -- seconds
 -- Save stats, ban user
 local function pre_process(msg)
   -- Ignore service msg
@@ -107,11 +106,11 @@ local function pre_process(msg)
 	  local name_log = print_name:gsub("_", "")
 	  if msg.to.type == 'chat' or msg.to.type == 'channel' then
 		if username then
-			savelog(msg.to.id, name_log.." @"..username.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , "Flooding is not allowed here\n@"..username.."["..msg.from.id.."]\nStatus: User kicked")
+			savelog(msg.to.id, name_log.."🔱 @"..username.." ["..msg.from.id.."] از گروه خارج شد برای استفاده از اسپم های مکرر.")
+			send_large_msg(receiver , "🔱 متاسفانه اسپم زدن در این گروه مجاز نمیباشد! \n@"..username.."["..msg.from.id.."]\nStatus: User kicked")
 		else
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , "Flooding is not allowed here\nName:"..name_log.."["..msg.from.id.."]\nStatus: User kicked")
+			send_large_msg(receiver , "Flooding is not allowed here\nName:"..name_log.."["..msg.from.id.."]\n🔱 نیجه : اخراج از گروه. 🔱")
 		end
 	  end
       -- incr it on redis
@@ -121,7 +120,7 @@ local function pre_process(msg)
       local gbanspamonredis = redis:get(gbanspam)
       --Check if user has spammed is group more than 4 times  
       if gbanspamonredis then
-        if tonumber(gbanspamonredis) ==  4 and not is_owner(msg) then
+        if tonumber(gbanspamonredis) ==  7 and not is_owner(msg) then
           --Global ban that user
           banall_user(msg.from.id)
           local gbanspam = 'gban:spam'..msg.from.id
@@ -141,7 +140,7 @@ local function pre_process(msg)
 		  local GBan_log =  data[tostring(GBan_log)]
 		  for k,v in pairs(GBan_log) do
 			log_SuperGroup = v
-			gban_text = "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)"
+			gban_text = "🔱 کاربر: [ "..name.." ] ( @"..username.." )"..msg.from.id.." بصورت جهانی و دائمی از گروهای ربات تله گولد خارج شد بدلیل اسپم های مکرر!!! 🔱 ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] 🔱"
 			--send it to log group/channel
 			send_large_msg(log_SuperGroup, gban_text)
 		  end
