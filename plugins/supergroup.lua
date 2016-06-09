@@ -62,7 +62,7 @@ local function check_member_superrem(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
-	  local text = 'سوپرگروه از لیست سوپرگروه های مدیریتی ربات حذف شد'
+	  local text = '🔱 سوپرگروه از لیست سوپرگروه های مدیریتی ربات حذف شد. 🔱'
       return reply_msg(msg.id, text, ok_cb, false)
     end
   end
@@ -103,13 +103,13 @@ end
 
 --Get and output info about supergroup
 local function callback_info(cb_extra, success, result)
-local title ="👥 اطلاعات سوپرگروه : ["..result.title.."]\n\n"
-local admin_num = "👤 تعداد مدیران : "..result.admins_count.."\n"
-local user_num = "🗣 تعداد افراد : "..result.participants_count.."\n"
+local title ="🔰 اطلاعات سوپرگروه : ["..result.title.."]\n\n"
+local admin_num = "🔱 تعداد مدیران : "..result.admins_count.."\n"
+local user_num = "♎ تعداد افراد : "..result.participants_count.."\n"
 local kicked_num = "❌ تعداد افراد اخراج شده : "..result.kicked_count.."\n"
-local channel_id = "🆔 آیدی سوپرگروه : "..result.peer_id.."\n"
+local channel_id = "✔ آیدی سوپرگروه : "..result.peer_id.."\n"
 if result.username then
-	channel_username = "🔢 یوزرنیم : @"..result.username
+	channel_username = "• یوزرنیم : @"..result.username
 else
 	channel_username = ""
 end
