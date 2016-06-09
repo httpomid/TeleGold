@@ -1,11 +1,3 @@
---[[
-
-#
-#     @WaderTGTeam
-#   @WaderTGTeam
-#      
-
-]]
 do
 function run_bash(str)
     local cmd = io.popen(str)
@@ -58,42 +50,47 @@ end
 
 
 function run(msg, matches)
- local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
- redis:incr(hash)
- local receiver = get_receiver(msg)
- local city = matches[1]
- if matches[1] == 'azan' then
- city = 'Tehran'
- end
- local lat,lng,url = get_staticmap(city)
+	local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
+	redis:incr(hash)
+	local receiver	= get_receiver(msg)
+	local city = matches[1]
+	if matches[1] == 'praytime' then
+	city = 'Tehran'
+	end
+	local lat,lng,url	= get_staticmap(city)
 
- local dumptime = run_bash('date +%s')
- local code = http.request('http://api.aladhan.com/timings/'..dumptime..'?latitude='..lat..'&longitude='..lng..'&timezonestring=Asia/Tehran&method=7')
- local jdat = json:decode(code)
- local data = jdat.data.timings
- local text = 'شهر: '..city
-   text = text..'\nاذان صبح: '..data.Fajr
-   text = text..'\nطلوع آفتاب: '..data.Sunrise
-   text = text..'\nاذان ظهر: '..data.Dhuhr
-   text = text..'\nغروب آفتاب: '..data.Sunset
-   text = text..'\nاذان مغرب: '..data.Maghrib
-   text = text..'\nعشاء : '..data.Isha
-   text = text..'\n\n@WaderTGTeam'
- if string.match(text, '0') then text = string.gsub(text, '0', '۰') end
- if string.match(text, '1') then text = string.gsub(text, '1', '۱') end
- if string.match(text, '2') then text = string.gsub(text, '2', '۲') end
- if string.match(text, '3') then text = string.gsub(text, '3', '۳') end
- if string.match(text, '4') then text = string.gsub(text, '4', '۴') end
- if string.match(text, '5') then text = string.gsub(text, '5', '۵') end 
- if string.match(text, '6') then text = string.gsub(text, '6', '۶') end
- if string.match(text, '7') then text = string.gsub(text, '7', '۷') end
- if string.match(text, '8') then text = string.gsub(text, '8', '۸') end
- if string.match(text, '9') then text = string.gsub(text, '9', '۹') end
- return text
+	local dumptime = run_bash('date +%s')
+	local code = http.request('http://api.aladhan.com/timings/'..dumptime..'?latitude='..lat..'&longitude='..lng..'&timezonestring=Asia/Tehran&method=7')
+	local jdat = json:decode(code)
+	local data = jdat.data.timings
+	local text = '📿شهر مورد نظر شما و اوقات شرعی📿: '..city
+	  text = text..'\n🔱اذان صبح: '..data.Fajr
+	  text = text..'\n🔱طلوع آفتاب: '..data.Sunrise
+	  text = text..'\n🔱اذان ظهر: '..data.Dhuhr
+	  text = text..'\n🔱غروب آفتاب: '..data.Sunset
+	  text = text..'\n🔱اذان مغرب: '..data.Maghrib
+	  text = text..'\n🔱عشاء : '..data.Isha
+	  text = text..'\n🔱 @TeleGold_Team 🔱'
+	if string.match(text, '0') then text = string.gsub(text, '0', '۰') end
+	if string.match(text, '1') then text = string.gsub(text, '1', '۱') end
+	if string.match(text, '2') then text = string.gsub(text, '2', '۲') end
+	if string.match(text, '3') then text = string.gsub(text, '3', '۳') end
+	if string.match(text, '4') then text = string.gsub(text, '4', '۴') end
+	if string.match(text, '5') then text = string.gsub(text, '5', '۵') end 
+	if string.match(text, '6') then text = string.gsub(text, '6', '۶') end
+	if string.match(text, '7') then text = string.gsub(text, '7', '۷') end
+	if string.match(text, '8') then text = string.gsub(text, '8', '۸') end
+	if string.match(text, '9') then text = string.gsub(text, '9', '۹') end
+	return text
 end
 
 return {
-  patterns = {"^[#/!][Aa]zan (.*)$","^[#/!](azan)$"}, 
+  patterns = {"^[#/!][Pp]raytime (.*)$","^[/#!](praytime)$"
+"^[/#!][aA]zan$"
+
+
+
+}, 
   run = run 
 }
 
