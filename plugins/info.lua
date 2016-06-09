@@ -1,8 +1,6 @@
---[[
-Add phone by : @WaderTGTeam tnx to : @WaderTGTeam
-]]
+
 do
-local sudo = 136888679 --put your id here(BOT OWNER ID)
+local sudo = 194849320 --put your id here(BOT OWNER ID)
 
 local function setrank(msg, name, value) -- setrank function
   local hash = nil
@@ -167,28 +165,28 @@ local function run(msg, matches)
    else
    Username = 'ندارد'
    end
-   local text = 'نام : '..(msg.from.first_name or 'ندارد')..'\n'
-   local text = text..'فامیل : '..(msg.from.last_name or 'ندارد')..'\n'	
-   local text = text..'یوزر : '..Username..'\n'
-   local text = text..'ایدی کاربری : '..msg.from.id..'\n\n'
-   local text = text..'شماره : +'..msg.from.phone..'\n'
+   local text = '🔱 نام : '..(msg.from.first_name or 'ندارد')..'\n'
+   local text = text..'🔱 فامیل : '..(msg.from.last_name or 'ندارد')..'\n'	
+   local text = text..'🔱 یوزر : '..Username..'\n'
+   local text = text..'🔱 ایدی کاربری : '..msg.from.id..'\n'
+   local text = text..'🔱 شماره : +'..msg.from.phone..'\n'
    local hash = 'rank:variables'
 	if hash then
 	  local value = redis:hget(hash, msg.from.id)
 	  if not value then
 		if msg.from.id == tonumber(sudo) then
-		 text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
+		 text = text..'🔱 مقام : مدیر کل ربات (Executive Admin) \n\n'
 		elseif is_sudo(msg) then
-		 text = text..'مقام : ادمین ربات (Admin) \n\n'
+		 text = text..'🔱 مقام : ادمین ربات (Admin) \n'
 		elseif is_owner(msg) then
-		 text = text..'مقام : مدیر کل گروه (Owner) \n\n'
+		 text = text..'🔱 مقام : مدیر کل گروه (Owner) \n'
 		elseif is_momod(msg) then
-		 text = text..'مقام : مدیر گروه (Moderator) \n\n'
+		 text = text..'🔱 مقام : مدیر گروه (Moderator) \n'
 		else
-		 text = text..'مقام : کاربر (Member) \n\n'
+		 text = text..'🔱 مقام : کاربر (Member) \n'
 		end
 	  else
-	   text = text..'مقام : '..value..'\n'
+	   text = text..'🔱 مقام : '..value..'\n'
 	  end
 	end
     
@@ -196,10 +194,10 @@ local function run(msg, matches)
  	 local user = redis:hgetall(uhash)
   	 local um_hash = 'msgs:'..msg.from.id..':'..msg.to.id
 	 user_info_msgs = tonumber(redis:get(um_hash) or 0)
-	 text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
+	 text = text..'🔱 تعداد پیام های فرستاده شده : '..user_info_msgs..'\n'
 	 if msg.to.type == 'chat' then
-	 text = text..'نام گروه : '..msg.to.title..'\n'
-     text = text..'ایدی گروه : '..msg.to.id
+	 text = text..'🔱 نام گروه : '..msg.to.title..'\n'
+     text = text..'🔱 ایدی گروه : '..msg.to.id
     end
 	text = text..''
     return send_msg(receiver, text, ok_cb, true)
@@ -240,6 +238,4 @@ return {
 }
 
 end
---[[
-Add phone by : @WaderTGTeam tnx to : @WaderTGTeam
-]]
+--by @TeleGold_Team
