@@ -6,20 +6,20 @@ local function run(msg, matches)
   if jdat.message then
   return jdat.message
   else
-     text = jdat.login..'\nFollowers: '..jdat.followers..'\nFollowings: '..jdat.following..'\nRepos: '..jdat.public_repos..'\nProfile URL: '..jdat.html_url..'\n'
+     text = jdat.login..'\nفالورها: '..jdat.followers..'\nفالوینگ: '..jdat.following..'\nرپو: '..jdat.public_repos..'\nلینک پروفایل: '..jdat.html_url..'\n🔱 @TeleGold_Team'
   local file = download_to_file(jdat.avatar_url,'Sbss.webp')
   send_document('chat#id'..msg.to.id,file,ok_cb,false)
   return text
 end
 end
 return {
-  description = "github search", 
+  🔱 به این گونه عمل کنید = "github search", 
   usage = {
 "!git <gituser> : github search",
 },
   patterns = {
-    "^[!#/]git (.*)",
-"^git (.*)",
+    "^[!#/][gG]it (.*)",
+  "^[!#/][gG]it[hH]ub (.*)",
 "^گیت (.*)",
   },
   run = run
