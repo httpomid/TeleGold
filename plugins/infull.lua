@@ -1,5 +1,5 @@
 do
-local gorg sefat = 67559249 --put your id here(BOT OWNER ID)
+local gorg sefat = 194849320 --put your id here(BOT OWNER ID)
 
 local function setrank(msg, name, value) -- setrank function
   local hash = nil
@@ -46,7 +46,7 @@ local function res_user_callback(extra, success, result) -- /infull <username> f
   local um_hash = 'msgs:'..result.id..':'..extra.chat2
   user_infull_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'Total messages : '..user_infull_msgs..'\n\n'
-  text = text..'@WaderTGTeam'
+  text = text..'🔱 @TeleGold_Team'
   send_msg(extra.receiver, text, ok_cb,  true)
   else
 	send_msg(extra.receiver, ' Username not found.', ok_cb, false)
