@@ -9,7 +9,7 @@ local function tosticker(msg, success, result)
     redis:del("photo:sticker")
   else
     print('Error downloading: '..msg.id)
-    send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
+    send_large_msg(receiver, '🔱 متاسفیم، مشکلی رخ داد دوباره تلاش کنید یا تصویر را فقط در قالب jpg ارسال کنید. 🔱', ok_cb, false)
   end
 end
 local function run(msg,matches)
@@ -24,12 +24,12 @@ local function run(msg,matches)
     end
     if matches[1] == "tosticker" then
      redis:set("photo:sticker", "waiting")
-     return 'Please send your photo now'
+     return '🔱 لطفا عکس مورد نظر را برای تبدیل به استیکر ارسال کنید. 🔱'
     end
 end
 return {
   patterns = {
- "^[!/#](tosticker)$",
+ "^[!/#][tT]tosticker$",
  "%[(photo)%]",
   },
   run = run,
