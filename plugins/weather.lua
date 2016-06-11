@@ -16,18 +16,18 @@ local function get_weather(location)
   local conditions = '🔱 شرایط فعلی آب و هوا : '
 
   if weather.weather[1].main == 'Clear' then
-    conditions = conditions .. '🔱 آفتابی '
+    conditions = conditions .. '☀آفتابی '
   elseif weather.weather[1].main == 'Clouds' then
-    conditions = conditions .. '🔱 ابری '
+    conditions = conditions .. '☁ابری '
   elseif weather.weather[1].main == 'Rain' then
-    conditions = conditions .. '🔱 بارانی '
+    conditions = conditions .. '☔بارانی '
   elseif weather.weather[1].main == 'Thunderstorm' then
-    conditions = conditions .. '🔱 طوفانی'
+    conditions = conditions .. '🌊طوفانی'
   elseif weather.weather[1].main == 'Mist' then
-    conditions = conditions .. '🔱 مه '
+    conditions = conditions .. '🌌مه '
   end
 
-  return temp .. '\n\n' .. conditions..'\n\n🔱 TeleGold_Team 🔱\n‌'
+  return temp .. '\n\n' .. conditions..'\n\n🔱 @TeleGold_Team 🔱\n‌'
 end
 local function run(msg, matches) 
     city = matches[1]
@@ -41,7 +41,7 @@ end
 return {
 
   patterns = {
-   "^[/#!]weather (.*)$",
+   "^[/#!][wW]eather (.*)$",
     },
   run = run
 }
