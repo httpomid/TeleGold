@@ -24,7 +24,7 @@ local function run(msg,matches)
     end
     if matches[1] == "tophoto" and is_momod(msg) then
     	redis:set("sticker:photo", "waiting")
-    	return '🔱 لطفا استیکر مورد نظر را ارسال کنید. 🔱'
+    	return '🔱لطفا استیکر مورد نظر را ارسال کنید.🔱'
     end
 end
 return {
