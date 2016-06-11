@@ -12,18 +12,12 @@ local function mathjs(exp)
     text = 'Unexpected error\n'
       ..'Is api.mathjs.org up?'
   end
-  return text
-end
-
-local function run(msg, matches)
-  return mathjs(matches[1])
-end
-
-return {
+  return text end local function run(msg, matches)
+  return mathjs(matches[1]) end return {
   description = "Calculate math expressions with mathjs API",
-  usage = "#calc [expression]: evaluates the expression and sends the result.",
+  usage = "!calc [expression]: evaluates the expression and sends the result.",
   patterns = {
-    "^[!/#][cC]alc (.*)$"
+    "^[#!/][cC]alc (.*)$"
   },
   run = run
 }
