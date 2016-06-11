@@ -24,17 +24,17 @@ if jdat.reason then
       if jdat.reason == 'accessDenied' then return 'For the record API Key Go to site\ndeveloper.clashofclans.com' end
    return '#Error\n'..jdat.reason
   end
-  local text = 'Clan Tag: '.. jdat.tag
-     text = text..'\nClan Name: '.. jdat.name
-     text = text..'\nDescription: '.. jdat.description
-     text = text..'\nType: '.. jdat.type
-     text = text..'\nWar Frequency: '.. jdat.warFrequency
-     text = text..'\nClan Level: '.. jdat.clanLevel
-     text = text..'\nWar Wins: '.. jdat.warWins
-     text = text..'\nClan Points: '.. jdat.clanPoints
-     text = text..'\nRequired Trophies: '.. jdat.requiredTrophies
-     text = text..'\nMembers: '.. jdat.members
-     text = text..'\n\n@WaderTGTeam'
+  local text = '🔱 تگ کلن: '.. jdat.tag
+     text = text..'\n🔱 نام کلن: '.. jdat.name
+     text = text..'\n🔱 توضیحات: '.. jdat.description
+     text = text..'\n🔱 تایپ: '.. jdat.type
+     text = text..'\n🔱 فرکانس وار: '.. jdat.warFrequency
+     text = text..'\n🔱 لول کلن: '.. jdat.clanLevel
+     text = text..'\n🔱 پیروزی کلن در وار ها: '.. jdat.warWins
+     text = text..'\n🔱 امتیاز کلن: '.. jdat.clanPoints
+     text = text..'\n🔱 چیزاهای مورد نیاز: '.. jdat.requiredTrophies
+     text = text..'\n🔱 تعداد اعضا: '.. jdat.members
+     text = text..'\n\n 🔱 @TeleGold_Team 🔱'
      cmd:close()
   return text
  end
