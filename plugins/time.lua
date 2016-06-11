@@ -1,11 +1,16 @@
-#addplug function run(msg, matches)
-local url , res = http.request('http://api.gpmod.ir/time/')
-if res ~= 200 then return "No connection" end
-local jdat = json:decode(url)
-local text = '🔱 ساعت '..jdat.FAtime..' \n🔱 امروز '..jdat.FAdate..' میباشد.\n    ----\n🔱 '..jdat.ENtime..'\n🔱 '..jdat.ENdate.. '\n🔱 @TeleGold_Team 🔱'
-return text
+local database = 'http://vip.opload.ir/vipdl/95/1/amirhmz/'
+local function run(msg)
+	local res = http.request(database.."fal.db")
+	local fal = res:split(",") 
+	return fal[math.random(#fal)]
 end
+--@TeleGold_Team
 return {
-  patterns = {"^[/!]([Tt][iI][Mm][Ee])$","^زمان$"}, 
-run = run
-} time
+	description = "500 Fal Hafez",
+	usage = "!joke : send random fal",
+	patterns = {
+		"^[/#!][Ff]al",
+		"^فال بگیر$"
+		},
+	run = run
+} 
