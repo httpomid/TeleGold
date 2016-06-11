@@ -1,11 +1,4 @@
---[[
-
-#
-#     @WaderTGTeam
-#   @WaderTGTeam
-#      
-
-]]
+--@TeleGold_Team
 
 local function run(msg, matches)
  if matches[1]:lower() == 'aparat' then
@@ -13,18 +6,18 @@ local function run(msg, matches)
   local jdat = json:decode(url)
 
   local items = jdat.videobysearch
-  text = 'نتیجه جستوجو در آپارات: \n'
+  text = '🔱 نتیجه‌ی جستجو در آپارات:\n'
   for i = 1, #items do
   text = text..'\n'..i..'- '..items[i].title..'  -  تعداد بازدید: '..items[i].visit_cnt..'\n    لینک: aparat.com/v/'..items[i].uid
   end
-  text = text..'\n\n@WaderTGTeam'
+  text = text..'\n\n🔱 @TeleGold_Team 🔱'
   return text
  end
 end
 
 return {
    patterns = {
-"^[#/!](aparat) (.*)$",
+"^[#/!][aA]parat (.*)$",
    },
    run = run
 }
