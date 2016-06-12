@@ -4,7 +4,7 @@ local function chat_list(msg)
         if not data[tostring(groups)] then
                 return '🔱 گروهی یافت نشد! 🔱'
         end
-        local message = '🔱 لیست گروهای ربات تله گولد:\n🔱*برای جوین دادن اینگونه عمل کنید: #join [آیدی گروه]\n🔱*و برای ارسال لینک گروه به این شکل: #link [آیدی گروه] \n\n '
+        local message = '🔱 لیست گروهای ربات تله گولد:\n🔱*برای جوین دادن اینگونه عمل کنید:\n #join [شماره گروه]\n🔱*و برای ارسال لینک گروه به این شکل:\n #link [شماره گروه] \n\n '
         for k,v in pairs(data[tostring(groups)]) do
                 local settings = data[tostring(v)]['settings']
                 for m,n in pairsByKeys(settings) do
@@ -13,7 +13,7 @@ local function chat_list(msg)
                         end
                 end
 
-                message = message .. 'ًں‘¥ '.. name .. ' (ID: ' .. v .. ')\n\n '
+                message = message .. 'گروه > '.. name .. ' (شماره گروه: ' .. v .. ')\n\n '
         end
         local file = io.open("./groups/lists/listed_groups.txt", "w")
         file:write(message)
