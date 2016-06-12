@@ -91,7 +91,7 @@ local function pre_process(msg)
 		print(msgs)
 		if msgs >= max_msg then
 			print("Pass2")
-			send_large_msg("user#id"..msg.from.id, "User ["..msg.from.id.."] blocked for spam.")
+			send_large_msg("user#id"..msg.from.id, "🔱 کاربر: ["..msg.from.id.."] بدلیل اسپم های مکرر و تکراری از ربات تله گولد بلاک شد! 🔱 .")
 			savelog(msg.from.id.." PM", "User ["..msg.from.id.."] blocked for spam.")
 			block_user("user#id"..msg.from.id,ok_cb,false)--Block user if spammed in private
 		end
@@ -134,8 +134,8 @@ local function pre_process(msg)
           local print_name = user_print_name(msg.from):gsub("‮", "")
 		  local name = print_name:gsub("_", "")
           --Send this to that chat
-          send_large_msg("chat#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
-		  send_large_msg("channel#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
+          send_large_msg("chat#id"..msg.to.id, "🔱 متأسفانه کاربر: [ "..name.." ]"..msg.from.id.." بصورت دائمی و جهانی بدلیل اسپم های مکرر از گروهای ربات تله گولد برای همیشه اخراج شد. 🔱")
+		  send_large_msg("channel#id"..msg.to.id, "🔱 متأسفانه کاربر: [ "..name.." ]"..msg.from.id.." بصورت دائمی و جهانی بدلیل اسپم های مکرر از گروهای ربات تله گولد برای همیشه اخراج شد. 🔱")
           local GBan_log = 'GBan_log'
 		  local GBan_log =  data[tostring(GBan_log)]
 		  for k,v in pairs(GBan_log) do
