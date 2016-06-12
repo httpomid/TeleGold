@@ -12,4 +12,4 @@ return {
   run = run,
   moderated = true
 }
---Channel : @WaderTGTeam
+
