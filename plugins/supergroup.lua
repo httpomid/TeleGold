@@ -1288,14 +1288,14 @@ local function run(msg, matches)
 		if matches[1] == 'setlink' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_link'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '🔱 لطفا لینک جدید را برای ذخیره ارسال نمایید. 🔱'
+			return '🔱Please send the new group link now🔱'
 		end
 
 		if msg.text then
 			if msg.text:match("^(https://telegram.me/joinchat/%S+)$") and data[tostring(msg.to.id)]['settings']['set_link'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_link'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "🔱 لینک جدید ذخیره شد. 🔱"
+				return "🔱 New link set Please send me #link 🔱 "
 			end
 		end
 
@@ -1305,7 +1305,7 @@ local function run(msg, matches)
 			end
 			local group_link = data[tostring(msg.to.id)]['settings']['set_link']
 			if not group_link then
-				return "🔱 ابتدا لینک جدیدی ایجاد یا ذخیره کنید. 🔱"
+				return '🔱 ابتدا لینک جدیدی ایجاد یا ذخیره کنید. 🔱'
 			end
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
 			return "☑️ لینک گروه : "..group_link
@@ -1808,14 +1808,14 @@ local function run(msg, matches)
 					return "🔱 بی صدا کردن متن در حال حاظر فعال است. 🔱"
 				end
 			end
-			if matches[2] == 'chat' then
+			if matches[2] == 'all' then
 			local msg_type = 'All'
 				if not is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: mute "..msg_type)
 					mute(chat_id, msg_type)
-					return "🔱 چت از این زمان ممنوع شد!!! 🔱"
+					return "🔱 "..msg_type.." چت کردن در گروه ممنوع شد! با دستور #unmute all چت را میتوانید آزاد کنید.🔱 "
 				else
-					return "🔱 چت کردن در حال حاظر قفل می باشد. 🔱"
+					return "🔱 "..msg_type.." چت از قبل در گروه ممنوع بود! با دستور #unmute all چت را میتوانید آزاد کنید! 🔱"
 				end
 			end
 		end
@@ -1881,14 +1881,14 @@ local function run(msg, matches)
 					return "🔱 ارسال متن در حال حاظر با صدا است. 🔱"
 				end
 			end
-			if matches[2] == 'chat' then
+			if matches[2] == 'all' then
 			local msg_type = 'All'
 				if is_muted(chat_id, msg_type..': yes') then
 					savelog(msg.to.id, name_log.." ["..msg.from.id.."] set SuperGroup to: unmute "..msg_type)
 					unmute(chat_id, msg_type)
-					return "🔱 چت کردن آزاد شد. 🔱"
+					return "🔱 "..msg_type.." چت آزاد شد! 🔱"
 				else
-					return "🔱 چت در حال حاظر آزاد می باشد. 🔱"
+					return "🔱 "..msg_type.." چت از قبل آزاد بوده است! با دستور #mute all چت را ممنوع کنید! 🔱"
 				end
 			end
 		end
