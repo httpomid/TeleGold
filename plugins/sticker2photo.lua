@@ -1,4 +1,4 @@
-local function tosticker(msg, success, result)
+local function tophoto(msg, success, result)
   local receiver = get_receiver(msg)
   if success then
     local file = 'data/stickers/'..msg.from.id..'.jpg'
@@ -9,7 +9,7 @@ local function tosticker(msg, success, result)
     redis:del("sticker:photo")
   else
     print('Error downloading: '..msg.id)
-    send_large_msg(receiver, '🔱 متأسفم، مشکلی رخ داد، دوباره تلاش نمایید. 🔱', ok_cb, false)
+    send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
   end
 end
 local function run(msg,matches)
@@ -18,19 +18,20 @@ local function run(msg,matches)
     if msg.media then
       	if msg.media.type == 'document' and is_momod(msg) and redis:get("sticker:photo") then
       		if redis:get("sticker:photo") == 'waiting' then
-        		load_document(msg.id, tosticker, msg)
+        		load_document(msg.id, tophoto, msg)
       		end
       	end
     end
-    if matches[1] == "tophoto" and is_momod(msg) then
+    if matches[1] == "tophoto" then
     	redis:set("sticker:photo", "waiting")
-    	return '🔱لطفا استیکر مورد نظر را ارسال کنید.🔱'
+    	return 'Please send your sticker now'
     end
 end
+
 return {
   patterns = {
-	"^[!/#][Tt]ophoto$",
-	"%[(document)%]",
+  "^[!/#](tophoto)$",
+  "%[(document)%]",
   },
   run = run,
 }
