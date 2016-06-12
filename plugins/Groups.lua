@@ -2,9 +2,9 @@ local function chat_list(msg)
     local data = load_data(_config.moderation.data)
         local groups = 'groups'
         if not data[tostring(groups)] then
-                return '🔱 گروهی یافت نشد! 🔱'
+                return '🔱 گروهی که وارد کردید اشتباه است. 🔱'
         end
-        local message = '🔱 لیست گروهای ربات تله گولد:\n🔱*برای جوین دادن اینگونه عمل کنید:\n #join شماره گروه\n🔱*و برای ارسال لینک گروه به این شکل:\n #link شماره گروه \n🔱 اعداد رو به لاتین وارد کنید.\n\n'
+        local message = '🔱 برای عضوییت در گروهی که میخواید کافیه به شکل زیر عمل کنید:\n🔱 #join شماره گروه\n🔱 و برای دریافت لینک گروه مورد نظر به این شکل:\n🔱 #link شماره گروه \n____________________\n'
         for k,v in pairs(data[tostring(groups)]) do
                 local settings = data[tostring(v)]['settings']
                 for m,n in pairsByKeys(settings) do
@@ -13,7 +13,7 @@ local function chat_list(msg)
                         end
                 end
 
-                message = message .. '🔱گروه > '.. name .. ' (شماره گروه: ' .. v .. ')\n\n '
+                message = message .. '🔱 گروه: '.. name .. ' (شماره گروه: ' .. v .. ' )\n____________________\n '
         end
         local file = io.open("./groups/lists/listed_groups.txt", "w")
         file:write(message)
@@ -27,28 +27,28 @@ local function run(msg, matches)
   if is_sudo(msg) then
     if matches[1] == 'link' and data[tostring(matches[2])] then
         if is_banned(msg.from.id, matches[2]) then
-     return '🔱 شما از گروه مسدود (بن) شدید. 🔱'
+     return '🔱شما از گروه مسدود شده اید! 🔱'
   end
       if is_gbanned(msg.from.id) then
-            return '🔱 متأسفیم، شما بصورت دائم از گروهای ربات تله گولد محروم شدید، اگر احساس میکنید اشکتباهی رخ داده است به کانال @TeleGold_Team بروید و با سازندگان در ارتباط شوید. 🔱'
+            return '🔱 شما برای همیشه از این گروه یا همه گروهای ربات تله گولد اخراج و مسدود شدید! 🔱'
       end
       if data[tostring(matches[2])]['settings']['lock_member'] == 'yes' and not is_owner2(msg.from.id, matches[2]) then
-        return '🔱 متأسفم، این گروه شخصی است و اجازه ورود را ندارید! 🔱'
+        return '🔱این گروه شخصی است!🔱'
       end
           local chat_id = "chat#id"..matches[2]
           local user_id = "user#id"..msg.from.id
       chat_add_user(chat_id, user_id, ok_cb, false)   
    local group_link = data[tostring(matches[2])]['settings']['set_link']
    local group_name = data[tostring(matches[2])]['settings']['set_name']
-   return "🔱 بفرمایید پیشاپیش خوش آمدید:\n"..group_link.."\n🔱(نام گروه:"..group_name..")🔱"
+   return "🔱 لینک گروه مورد نظر شما خوش اومدید:\n"..group_link.."\n\n(Group name:"..group_name..")\n🔱 @TeleGold_Team 🔱"
    
     elseif matches[1] == 'link' and not data[tostring(matches[2])] then
 
-          return "🔱 گروه یافت نشد، اگر کیبورد شما فارسی است اول انگلیسی کنید بعد اعداد رو وارد کنید! 🔱"
+          return "🔱 گروه یافت نشد لطفا اول کیبورد را فارسی کنید سپس شماره گروه را وارد کنید. 🔱"
          end
     end
   else
-   return "🔱 فقط برای سازنده اصلی امکان پذیر است! 🔱"
+   return "🔱فقط برای سازندگان🔱"
   end
 
      if matches[1] == 'groups' then
