@@ -107,10 +107,10 @@ local function pre_process(msg)
 	  if msg.to.type == 'chat' or msg.to.type == 'channel' then
 		if username then
 			savelog(msg.to.id, name_log.."🔱 @"..username.." ["..msg.from.id.."] از گروه خارج شد برای استفاده از اسپم های مکرر.")
-			send_large_msg(receiver , "🔱 متاسفانه اسپم زدن در این گروه مجاز نمیباشد! \n@"..username.."["..msg.from.id.."]\nStatus: User kicked")
+			send_large_msg(receiver , "🔱 متاسفانه اسپم زدن در این گروه مجاز نمیباشد! \n🔱 مشخصات کاربر:\n🔱 یوزر: @"..username.."\n🔱 آیدی: ["..msg.from.id.."]\n🔱 نتیجه اسپم: اخراج شدن!")
 		else
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , "Flooding is not allowed here\nName:"..name_log.."["..msg.from.id.."]\n🔱 نیجه : اخراج از گروه. 🔱")
+			send_large_msg(receiver , "🔱متأسفانه اسپم زدن در این گروه مجاز نمیباشد!🔱\nName:"..name_log.."["..msg.from.id.."]\n🔱 نتیجه : اخراج از گروه. 🔱")
 		end
 	  end
       -- incr it on redis
