@@ -3,7 +3,7 @@ do
 local function run(msg, matches)
   local eq = URL.escape(matches[2])
 local w = "640"
-local h = "200"
+local h = "640"
 local txtsize = "62"
 local txtclr = "ff2e4357"
 if matches[3] then 
@@ -16,7 +16,7 @@ if matches[4] then
   w = matches[5]
   h = matches[6]
   end
-  local url = "http://8pic.ir/images/xliu0q8ewjyzo03wzyae.jpg?blur=150&w="..w.."&h="..h.."&fit=crop&txt="..eq.."&txtsize="..txtsize.."&txtclr="..txtclr.."&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium&mono=ff6598cc"
+  local url = "https://assets.imgix.net/examples/clouds.jpg?blur=150&w="..w.."&h="..h.."&fit=crop&txt="..eq.."&txtsize="..txtsize.."&txtclr="..txtclr.."&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium&mono=ff6598cc"
 
   local receiver = get_receiver(msg)
   if matches[1] == "*" then 
@@ -36,14 +36,15 @@ return {
     "^[!#/]sticker(*) (.+)$",
     "^[!#/](sticker) (.+)$",
     "^[!#/]sticker(*) (.+) (.+)$",
-    "^[!/#]sticker (3) (.+) (.+) (.+)$",
-        "^[!/#]sticker(*)2 (.+) (.+)$",
-        "^[!/#]sticker (2) (.+) (.+)$",
-    "^[!/#]sticker(*)3 (.+) (.+) (.+)$", 
-    "^[!/#]sticker(*)4 (.+) (.+) (.+) (.+) (.+)$",
+    "^[!#/]sticker (3) (.+) (.+) (.+)$",
+        "^[!#/]sticker(*)2 (.+) (.+)$",
+        "^[!#/]sticker (2) (.+) (.+)$",
+    "^[!#/]sticker(*)3 (.+) (.+) (.+)$", 
+    "^[!#/]sticker(*)4 (.+) (.+) (.+) (.+) (.+)$",
     "^[!#/]sticker (4) (.+) (.+) (.+) (.+) (.+)$"
   },
   run = run
 }
 
 end
+
