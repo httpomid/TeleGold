@@ -1,15 +1,11 @@
-local database = 'http://vip.opload.ir/vipdl/95/1/amirhmz/'
-local function run(msg)
-	local res = http.request(database.."fal.db")
-	local fal = res:split(",") 
-	return fal[math.random(#fal)]
+local function run(msg, matches)
+  if matches[1] == 'بگو' and matches[2] then
+   return matches[2]
+   end
 end
 return {
-	description = "500 Fal Hafez",
-	usage = "!joke : send random fal",
-	patterns = {
-		"^[/#!][fF]al",
-		"^(فال بگیر)$"
-		},
-	run = run
+patterns = {
+"^(بگو) (.*)$",
+},
+run = run,
 }
