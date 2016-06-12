@@ -9,6 +9,7 @@ do local function run(msg, matches)
   end end return {
   patterns = {
   "^[!/#](send) (.*)$"
+"^[!/#](get) (.*)$"
   },
   run = run
 }
