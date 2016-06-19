@@ -1288,14 +1288,14 @@ local function run(msg, matches)
 		if matches[1] == 'setlink' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_link'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return 'Please send the new group link now'
+			return '🔱 لینک گررهتون رو ارسال کنید تا اونو سیو کنم.🔱'
 		end
 
 		if msg.text then
 			if msg.text:match("^(https://telegram.me/joinchat/%S+)$") and data[tostring(msg.to.id)]['settings']['set_link'] == 'waiting' and is_owner(msg) then
 				data[tostring(msg.to.id)]['settings']['set_link'] = msg.text
 				save_data(_config.moderation.data, data)
-				return "New link set Please send me #link "
+				return "🔱 لینک شما سیو شد! برای دریافت لینک #link رو هر دفعه ارسال کنید. 🔱 "
 			end
 		end
 
@@ -2067,12 +2067,17 @@ end
 
 return {
   patterns = {
-  "^[#!/]([Aa]dd)$",
+	"^[#!/]([Aa]dd)$",
 	"^[#!/]([Rr]em)$",
 	"^[#!/]([Mm]ove) (.*)$",
+	"^[#!/]([Ii]nfo)$",
+	"^[#!/]([Aa]dmins)$",
 	"^[#!/]([Oo]wner)$",
 	"^[#!/]([Mm]odlist)$",
-  "^[#!/]([Bb]lock) (.*)",
+	"^[#!/]([Bb]ots)$",
+	"^[#!/]([Ww]ho)$",
+	"^[#!/]([Kk]icked)$",
+    "^[#!/]([Bb]lock) (.*)",
 	"^[#!/]([Bb]lock)",
 	"^[#!/]([Tt]osuper)$",
 	"^[#!/]([Ii][Dd])$",
@@ -2080,6 +2085,7 @@ return {
 	"^[#!/]([Kk]ickme)$",
 	"^[#!/]([Kk]ick) (.*)$",
 	"^[#!/]([Nn]ewlink)$",
+	"^[#!/]([Ss]etlink)$",
 	"^[#!/]([Ll]ink)$",
 	"^[#!/]([Rr]es) (.*)$",
 	"^[#!/]([Ss]etadmin) (.*)$",
@@ -2093,33 +2099,35 @@ return {
 	"^[#!/]([Dd]emote) (.*)$",
 	"^[#!/]([Dd]emote)",
 	"^[#!/]([Ss]etname) (.*)$",
+	"^[#!/]([Ss]etabout) (.*)$",
 	"^[#!/]([Ss]etrules) (.*)$",
 	"^[#!/]([Ss]etphoto)$",
+	"^[#!/]([Ss]etusername) (.*)$",
 	"^[#!/]([Dd]el)$",
 	"^[#!/]([Ll]ock) (.*)$",
 	"^[#!/]([Uu]nlock) (.*)$",
 	"^[#!/]([Mm]ute) ([^%s]+)$",
 	"^[#!/]([Uu]nmute) ([^%s]+)$",
-	"^[#!/]([Mm]utelist)$",
-	"^[#!/]([Mm]uteslist)$",
 	"^[#!/]([Mm]uteuser)$",
-  "^[#!/]([Mm]uteuser) (.*)$",
+	"^[#!/]([Mm]uteuser) (.*)$",
 	"^[#!/]([Pp]ublic) (.*)$",
 	"^[#!/]([Ss]ettings)$",
 	"^[#!/]([Rr]ules)$",
 	"^[#!/]([Ss]etflood) (%d+)$",
 	"^[#!/]([Cc]lean) (.*)$",
 	"^[#!/]([Hh]elp)$",
-  "[#!/](mp) (.*)",
+	"^[#!/]([Mm]uteslist)$",
+	"^[#!/]([Mm]utelist)$",
+    "[#!/](mp) (.*)",
 	"[#!/](md) (.*)",
-  "^(https://telegram.me/joinchat/%S+)$",
+    "^(https://telegram.me/joinchat/%S+)$",
 	"msg.to.peer_id",
 	"%[(document)%]",
 	"%[(photo)%]",
 	"%[(video)%]",
 	"%[(audio)%]",
 	"%[(contact)%]",
-	"^!!tgservice (.+)$",
+	"^!!tgservice (.+)$"
   },
   run = run,
   pre_process = pre_process
