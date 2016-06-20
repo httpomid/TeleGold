@@ -1,11 +1,17 @@
- function run(msg, matches)
+#addplug function run(msg, matches)
 local reply = msg['id']
-local text = 'سلام خوبی؟ '..msg.from.print_name
-local text2 = 'سلام بابا جونم، فدای سلام کردنت بشم من😍'
+local text = 'سلوم :)'
+local text2 = 'سلام بابا جونم خسته نباشی عزیزم😍'
+local text3 = 'سلام مدیر جونم :)'
+local text4 = 'سلام ادمین خسته نباشی :)'
 if not is_sudo(msg) then
-reply_msg(reply, text, ok_cb, false)
+return text
 elseif is_sudo(msg) then
-reply_msg(reply, text2, ok_cb, false)
+return text2
+elseif is_owner(msg) and not is_sudo(msg) then
+return text3
+elseif is_momod(msg) then
+return text4
 end
 end
 return {
@@ -23,4 +29,4 @@ patterns = {
 "^هلو$"
 },
 run = run
-}
+} salam
