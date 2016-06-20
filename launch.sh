@@ -33,7 +33,17 @@ install_luarocks() {
 }
 
 install_rocks() {
-  ./.luarocks/bin/luarocks install luasocket
+  ./.luarocks/bin/luarocks install luasec
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+ ./.luarocks/bin/luarocks install lbase64 20120807-3
+ RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+  
+ ./.luarocks/bin/luarocks install luasocket
   RET=$?; if [ $RET -ne 0 ];
     then echo "Error. Exiting."; exit $RET;
   fi
@@ -110,9 +120,6 @@ else
     echo "Run $0 install"
     exit 1
   fi
-  while true; do
-   rm -r ../.telegram-cli/state
-   ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/seedbot.lua -l 1 -E $@
-   sleep 3
-  done
+  rm -r ../.telegram-cli/state #Prevent tg from crash
+  ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/WaderTGbot.lua -l 1 -E $@
 fi
