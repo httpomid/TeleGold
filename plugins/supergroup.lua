@@ -1288,7 +1288,7 @@ local function run(msg, matches)
 		if matches[1] == 'setlink' and is_owner(msg) then
 			data[tostring(msg.to.id)]['settings']['set_link'] = 'waiting'
 			save_data(_config.moderation.data, data)
-			return '🔱 لینک گررهتون رو ارسال کنید تا اونو سیو کنم.🔱'
+			return '🔱 لینک گروهتون رو ارسال کنید تا اونو سیو کنم.🔱'
 		end
 
 		if msg.text then
