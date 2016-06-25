@@ -1954,9 +1954,7 @@ local function run(msg, matches)
 		elseif matches[1] == 'help' and is_owner(msg) then
 			local name_log = user_print_name(msg.from)
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] Used /superhelp")
-			return [[
-			
-			🔱 دستورات:
+			return [[🔱 دستورات:
 ------
 برای دریافت لینک گروه #link رو ارسال کنید.
 برای تعویض لینک #newlink رو ارسال کنید.
@@ -2005,8 +2003,7 @@ local function run(msg, matches)
 ------
 میتونید بجای # از / و ! نیز استفاده کرد ارسال جک در گروه عبارت "جک بگو" و نمایش زمان "زمان"را ارسال کنید.
 ------
-لیست سرویس های ربات دستور #help2
-	]]
+لیست سرویس های ربات دستور #help2]]
 		end
 
 		if matches[1] == 'peer_id' and is_admin1(msg)then
