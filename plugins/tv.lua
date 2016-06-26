@@ -1,58 +1,51 @@
 do
  function run(msg, matches)
 local text = [[ 
-شبکه های آنلاین 📡
-
+شبکه های آنلاین
 _________________________
-پخش زنده شبکه یک سیما 🔱
+پخش زنده شبکه یک سیما
 http://s11.telewebion.com:1935/devices/tv1-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjM3OjQ5IEFNJmhhc2hfdmFsdWU9cVdWc0tzSTNITGhrbnRleWZHWnBmQT09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه دو سیما 🔱
+پخش زنده شبکه دو سیما 
 http://s5.telewebion.com:1935/devices/tv2-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQxOjkgQU0maGFzaF92YWx1ZT1jcytURi9KSmFMaWhCY0ZUZUsxQWd3PT0mdmFsaWRtaW51dGVzPTYwMDA=
 _________________________
-پخش زنده شبکه سه سیما 🔱
+پخش زنده شبکه سه سیما 
 http://s9.telewebion.com:1935/devices/tv2-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQyOjQ5IEFNJmhhc2hfdmFsdWU9d1o5Y1BCZENYNjRpWS82cnhRbm11dz09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه چهار سیما 🔱
+پخش زنده شبکه چهار سیما 
 http://s11.telewebion.com:1935/devices/tv4-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQ0OjIgQU0maGFzaF92YWx1ZT1wcGRkUUZoVmtoUXZPSGVMOVhYWkxnPT0mdmFsaWRtaW51dGVzPTYwMDA=
 _________________________
-پخش زنده شبکه تهران 🔱
+پخش زنده شبکه تهران 
 http://s11.telewebion.com:1935/devices/tehran-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQ1OjQgQU0maGFzaF92YWx1ZT1yR2I3anRLSUNKMFIvTTBiVlRDbVd3PT0mdmFsaWRtaW51dGVzPTYwMDA=
 _________________________
-پخش زنده شبکه خبر 🔱
+پخش زنده شبکه خبر 
 http://s10.telewebion.com:1935/devices/amouzesh-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQ1OjU4IEFNJmhhc2hfdmFsdWU9UUVSWGNjMjI3OWQrU3BaVHlGMmZ5dz09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه پویا 🔱
+پخش زنده شبکه پویا 
 http://s9.telewebion.com:1935/devices/pooya-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQ3OjE2IEFNJmhhc2hfdmFsdWU9RkFIeU5nZUN5bDRqWGQvTXNrZ3hCUT09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه آموزش 🔱
+پخش زنده شبکه آموزش 
 http://s11.telewebion.com:1935/devices/amouzesh-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQ4OjE5IEFNJmhhc2hfdmFsdWU9dlJXKytia2VtQUFJZEg0YUR0clVZZz09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه آیفیلم 🔱
+پخش زنده شبکه آیفیلم 
 http://s9.telewebion.com:1935/devices/ifilm-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjQ5OjM3IEFNJmhhc2hfdmFsdWU9WWNIWjFlejA5NE4xMG5qdlVpZlJkUT09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه نمایش 🔱
+پخش زنده شبکه نمایش 
  http://s8.telewebion.com:1935/devices/namayesh-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjUxOjEzIEFNJmhhc2hfdmFsdWU9MzVwamJPN2YxVXFjWThmeVkvdFcvQT09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه نسیم 🔱
+پخش زنده شبکه نسیم 
 http://s4.telewebion.com:1935/devices/nasim-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZvT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjUyOjIzIEFNJmhhc2hfdmFsdWU9bXFPV1ptb05hOGhqaE1XRm5FcmVyQT09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه ورزش 🔱
+پخش زنده شبکه ورزش 
 http://s5.telewebion.com:1935/devices/bck2varzesh-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjUzOjQ3IEFNJmhhc2hfdmFsdWU9akd6eHBHY3h2YnJ1TkRzdjlUWTZVQT09JnZhbGlkbWludXRlcz02MDAw
 _________________________
-پخش زنده شبکه اصفهان 🔱
+پخش زنده شبکه اصفهان 
 http://s11.telewebion.com:1935/devices/esfahan-300k.stream/playlist.m3u8?wmsAuthSign=aXNfZnJlZT0xJnNlcnZlcl90aW1lPTgvMjAvMjAxNSA4OjU0OjI2IEFNJmhhc2hfdmFsdWU9bGdzbFBXLzBEZVNjV3QyaWxOcnVTQT09JnZhbGlkbWludXRlcz02MDAw
-
-
 ]]
 return text
 end
 return {
-patterns = {
-"^(tv)$",
-"^[!/#](tv)$",
-"^(تلوزیون)$",
-},
+patterns = {"^([tT]v)$"},
 run = run
 }
 end
