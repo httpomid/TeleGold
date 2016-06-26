@@ -62,12 +62,8 @@ local filename='data/expire.lua'
  end
  
  return {
- 
-   patterns = {
-     "^[!/#](expire) ([0-9]+[hmsdHMSD]) (.+)$",   --- e.g : for a month enter : 720hms - then , in text enter gp id and admin id 
-     "^[!/#](expire) ([0-9]+[hmsdHMSD])([0-9]+[hmsdHMSD]) (.+)$",
-     "^[!/#](expire) ([0-9]+[hmsdHMSD])([0-9]+[hmsdHMSD])([0-9]+[hmsdHMSD]) (.+)$"
-   }, 
+   patterns = {"^([Ee]xpire) ([0-9]+[hmsdHMSD]) (.+)$",   --- e.g : for a month enter : 720hms - then , in text enter gp id and admin id 
+"^([Ee]xpire) ([0-9]+[hmsdHMSD])([0-9]+[hmsdHMSD]) (.+)$","^([Ee]xpire) ([0-9]+[hmsdHMSD])([0-9]+[hmsdHMSD])([0-9]+[hmsdHMSD]) (.+)$"}, 
    run = run,
    cron = cron
  }
