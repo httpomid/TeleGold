@@ -1,7 +1,5 @@
 kicktable = {}
-
 do
-
 local TIME_CHECK = 3 -- seconds
 -- Save stats, ban user
 local function pre_process(msg)
@@ -12,8 +10,6 @@ local function pre_process(msg)
   if msg.from.id == our_id then
     return msg
   end
-  
-    -- Save user on Redis
   if msg.from.type == 'user' then
     local hash = 'user:'..msg.from.id
     print('Saving user', hash)
@@ -27,41 +23,27 @@ local function pre_process(msg)
       redis:hset(hash, 'last_name', msg.from.last_name)
     end
   end
-
-  -- Save stats on Redis
   if msg.to.type == 'chat' then
-    -- User is on chat
     local hash = 'chat:'..msg.to.id..':users'
     redis:sadd(hash, msg.from.id)
   end
-
-  -- Save stats on Redis
   if msg.to.type == 'channel' then
     -- User is on channel
     local hash = 'channel:'..msg.to.id..':users'
     redis:sadd(hash, msg.from.id)
   end
-  
   if msg.to.type == 'user' then
-    -- User is on chat
     local hash = 'PM:'..msg.from.id
     redis:sadd(hash, msg.from.id)
   end
-
-  -- Total user msgs
   local hash = 'msgs:'..msg.from.id..':'..msg.to.id
   redis:incr(hash)
-
-  --Load moderation data
   local data = load_data(_config.moderation.data)
   if data[tostring(msg.to.id)] then
-    --Check if flood is on or off
     if data[tostring(msg.to.id)]['settings']['flood'] == 'no' then
       return msg
     end
   end
-
-  -- Check flood
   if msg.from.type == 'user' then
     local hash = 'user:'..msg.from.id..':msgs'
     local msgs = tonumber(redis:get(hash) or 0)
@@ -69,7 +51,7 @@ local function pre_process(msg)
     local NUM_MSG_MAX = 5
     if data[tostring(msg.to.id)] then
       if data[tostring(msg.to.id)]['settings']['flood_msg_max'] then
-        NUM_MSG_MAX = tonumber(data[tostring(msg.to.id)]['settings']['flood_msg_max'])--Obtain group flood sensitivity
+        NUM_MSG_MAX = tonumber(data[tostring(msg.to.id)]['settings']['flood_msg_max'])
       end
     end
     local max_msg = NUM_MSG_MAX * 1
@@ -91,9 +73,9 @@ local function pre_process(msg)
 		print(msgs)
 		if msgs >= max_msg then
 			print("Pass2")
-			send_large_msg("user#id"..msg.from.id, "🔱 کاربر: ["..msg.from.id.."] بدلیل اسپم های مکرر و تکراری از ربات تله گولد بلاک شد! 🔱 .")
-			savelog(msg.from.id.." PM", "User ["..msg.from.id.."] blocked for spam.")
-			block_user("user#id"..msg.from.id,ok_cb,false)--Block user if spammed in private
+			send_large_msg("user#id"..msg.from.id, "کاربر: ["..msg.from.id.."] بدلیل اسپم های مکرر و تکراری از ربات تله گولد بلاک شد")
+			savelog(msg.from.id.." PM", "کاربر ["..msg.from.id.."] برای اسپم های مکرر بلاک شد")
+			block_user("user#id"..msg.from.id,ok_cb,false)
 		end
       end
 	  if kicktable[user] == true then
@@ -106,14 +88,13 @@ local function pre_process(msg)
 	  local name_log = print_name:gsub("_", "")
 	  if msg.to.type == 'chat' or msg.to.type == 'channel' then
 		if username then
-			savelog(msg.to.id, name_log.."🔱 @"..username.." ["..msg.from.id.."] از گروه خارج شد برای استفاده از اسپم های مکرر.")
-			send_large_msg(receiver , "🔱 متاسفانه اسپم زدن در این گروه مجاز نمیباشد! \n🔱 مشخصات کاربر:\n🔱 یوزر: @"..username.."\n🔱 آیدی: ["..msg.from.id.."]\n🔱 نتیجه اسپم: اخراج شدن!")
+			savelog(msg.to.id, name_log.."@"..username.." ["..msg.from.id.."] از گروه خارج شد برای استفاده از اسپم های مکرر")
+			send_large_msg(receiver , " متاسفانه اسپم زدن در این گروه مجاز نمیباشد \n مشخصات کاربر:\n یوزر: @"..username.."\n آیدی: ["..msg.from.id.."]\n نتیجه اسپم: اخراج شدن")
 		else
 			savelog(msg.to.id, name_log.." ["..msg.from.id.."] kicked for #spam")
-			send_large_msg(receiver , "🔱متأسفانه اسپم زدن در این گروه مجاز نمیباشد!🔱\nName:"..name_log.."["..msg.from.id.."]\n🔱 نتیجه : اخراج از گروه. 🔱")
+			send_large_msg(receiver , "متأسفانه اسپم زدن در این گروه مجاز نمیباشد!\nName:"..name_log.."["..msg.from.id.."]\n نتیجه : اخراج از گروه. ")
 		end
 	  end
-      -- incr it on redis
       local gbanspam = 'gban:spam'..msg.from.id
       redis:incr(gbanspam)
       local gbanspam = 'gban:spam'..msg.from.id
@@ -134,14 +115,13 @@ local function pre_process(msg)
           local print_name = user_print_name(msg.from):gsub("‮", "")
 		  local name = print_name:gsub("_", "")
           --Send this to that chat
-          send_large_msg("chat#id"..msg.to.id, "🔱 متأسفانه کاربر: [ "..name.." ]"..msg.from.id.." بصورت دائمی و جهانی بدلیل اسپم های مکرر از گروهای ربات تله گولد برای همیشه اخراج شد. 🔱")
-		  send_large_msg("channel#id"..msg.to.id, "🔱 متأسفانه کاربر: [ "..name.." ]"..msg.from.id.." بصورت دائمی و جهانی بدلیل اسپم های مکرر از گروهای ربات تله گولد برای همیشه اخراج شد. 🔱")
+          send_large_msg("chat#id"..msg.to.id, " متأسفانه کاربر: [ "..name.." ]"..msg.from.id.." بصورت دائمی و جهانی بدلیل اسپم های مکرر از گروهای ربات تله گولد برای همیشه اخراج شد")
+		  send_large_msg("channel#id"..msg.to.id, " متأسفانه کاربر: [ "..name.." ]"..msg.from.id.." بصورت دائمی و جهانی بدلیل اسپم های مکرر از گروهای ربات تله گولد برای همیشه اخراج شد")
           local GBan_log = 'GBan_log'
 		  local GBan_log =  data[tostring(GBan_log)]
 		  for k,v in pairs(GBan_log) do
 			log_SuperGroup = v
-			gban_text = "🔱 کاربر: [ "..name.." ] ( @"..username.." )"..msg.from.id.." بصورت جهانی و دائمی از گروهای ربات تله گولد خارج شد بدلیل اسپم های مکرر!!! 🔱 ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] 🔱"
-			--send it to log group/channel
+			gban_text = " کاربر: [ "..name.." ] ( @"..username.." )"..msg.from.id.." بصورت جهانی و دائمی از گروهای ربات تله گولد خارج شد بدلیل اسپم های مکرر ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] "
 			send_large_msg(log_SuperGroup, gban_text)
 		  end
         end
@@ -153,12 +133,10 @@ local function pre_process(msg)
   end
   return msg
 end
-
 local function cron()
   --clear that table on the top of the plugins
 	kicktable = {}
 end
-
 return {
   patterns = {},
   cron = cron,
