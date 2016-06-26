@@ -54,13 +54,11 @@ send_photo('channel#id'..msg.to.id,file,ok_cb,false)
 
 send_photo('chat#id'..msg.to.id,file,ok_cb,false)
   end
-
   if s == 'p' or s == 'a' or s == 't' or s == 'z' or s == 'r' then
 send_document('channel#id'..msg.to.id,file,ok_cb,false)
 
 send_document('chat#id'..msg.to.id,file,ok_cb,false)
   end
-  
   if s == 'o' or s == 'm' then
 send_audio('channel#id'..msg.to.id,file,ok_cb,false)
 
@@ -76,18 +74,6 @@ return {
  "CopyRight all right reserved",
  "کپی بدون ذکر منبع حرام است",
  },
- patterns = {
-  "^[!#/](dler) (.*)(.zip)$",
-  "^[!#/](dler) (.*)(.rar)$",
-  "^[!#/](dler) (.*)(.jpg)$",
-  "^[!#/](dler) (.*)(.png)$",
-  "^[!#/](dler) (.*)(.gif)$",
-  "^[!#/](dler) (.*)(.apk)$",
-  "^[!#/](dler) (.*)(.mp3)$",
-  "^[!#/](dler) (.*)(.ogg)$",
-  "^[!#/](dler) (.*)(.txt)$",
-  "^[!#/](dler) (.*)(.aspx)$",
-  "^[!#/](dler) (.*)(.html)$",
- },
+ patterns = {"^([dD]ler) (.*)(.zip)$","^([Dd]ler) (.*)(.rar)$","^([dD]ler) (.*)(.jpg)$","^([Dd]ler) (.*)(.png)$","^([dD]ler) (.*)(.gif)$","^([dD]ler) (.*)(.apk)$","^([dD]ler) (.*)(.mp3)$","^([dD]ler) (.*)(.ogg)$","^([dD]ler) (.*)(.txt)$","^([dD]ler) (.*)(.aspx)$","^([dD]ler) (.*)(.html)$"},
  run = run,
 }
