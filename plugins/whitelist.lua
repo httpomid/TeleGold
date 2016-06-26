@@ -1,5 +1,4 @@
 do
-
 local function get_message_callback (extra , success, result)
 	if result.service then
 		local action = result.action.type
@@ -19,11 +18,9 @@ local function get_message_callback (extra , success, result)
 		send_large_msg(receiver, "User/Bot ["..user_id.."] removed from whitelist")
 	else
 		redis:sadd(hash, user_id)
-		send_large_msg(receiver, "User/Bot ["..user_id.."] added to whitelist")
+		send_large_msg(receiver, "کاربر ["..user_id.."] ادد شد در لیست سفید")
 	end
-	
 end
-
 local function whitelist_res (extra, success, result)
 	local user_id = result.peer_id
 	local receiver = extra.receiver
@@ -31,13 +28,12 @@ local function whitelist_res (extra, success, result)
 	local is_whitelisted = redis:sismember(hash, user_id)      
 	if is_whitelisted then
 		redis:srem(hash, user_id)
-		send_large_msg(receiver, "User/Bot ["..user_id.."] removed from whitelist")
+		send_large_msg(receiver, "کاربر ["..user_id.."] از لیست سفید حذف شد")
 	else
 		redis:sadd(hash, user_id)
-		send_large_msg(receiver, "User/Bot ["..user_id.."] added to whitelist")
+		send_large_msg(receiver, "کاربر ["..user_id.."] ادد شد در بیست سفید")
 	end
 end
-
 local function run (msg, matches)
 if matches[1] == "whitelist" and is_admin1(msg) then
     local hash = "whitelist"
@@ -50,10 +46,10 @@ if matches[1] == "whitelist" and is_admin1(msg) then
 		local is_whitelisted = redis:sismember(hash, user_id)      
 		if is_whitelisted then
 			redis:srem(hash, user_id)
-			return "User/Bot ["..user_id.."] removed from whitelist"
+			return "کاربر ["..user_id.."] از لیست سفید حذف شد"
 		else
 			redis:sadd(hash, user_id)
-			return "User/Bot ["..user_id.."] added to whitelist"
+			return "کاربر ["..user_id.."] ادد شد در لیست سفید"
 		end
 	elseif not string.match(matches[2], '^%d+$') then
 		local receiver = get_receiver(msg)
@@ -62,20 +58,14 @@ if matches[1] == "whitelist" and is_admin1(msg) then
 		resolve_username(username, whitelist_res, {receiver = receiver})
 	end
 end
-
 	if matches[1] == "clean" and matches[2] == 'whitelist' and is_admin1(msg) then
 		local hash =  'whitelist'
 			redis:del(hash)
-		return "Whitelist Cleaned"
+		return "لیست سفید حذف شد"
 	end
 end
-
 return {
-    patterns = {
-	  "^[#!/](whitelist)$",
-      "^[#!/](whitelist) (.*)$",
-	  "^[#!/](clean) (.*)$"
-    },
+    patterns = {"^([wW]hitelist)$","^([wW]hitelist) (.*)$","^([cC]lean) (.*)$"},
     run = run
 }
 end
