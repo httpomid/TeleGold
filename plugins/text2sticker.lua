@@ -1,5 +1,4 @@
 do
-
 local function run(msg, matches)
   local eq = URL.escape(matches[2])
 local w = "640"
@@ -17,7 +16,6 @@ if matches[4] then
   h = matches[6]
   end
   local url = "https://assets.imgix.net/examples/clouds.jpg?blur=150&w="..w.."&h="..h.."&fit=crop&txt="..eq.."&txtsize="..txtsize.."&txtclr="..txtclr.."&txtalign=middle,center&txtfont=Futura%20Condensed%20Medium&mono=ff6598cc"
-
   local receiver = get_receiver(msg)
   if matches[1] == "*" then 
   send_photo_from_url(receiver, url, send_title, {receiver, title})
@@ -26,24 +24,12 @@ local  file = download_to_file(url,'text.webp')
  send_document('channel#id'..msg.to.id, file, ok_cb , false)
 end
 end
-
 return {
   description = "Convert Text to Image",
   usage = {
     "/conv (txt) : convert txt to img"
   },
-  patterns = {
-    "^[!#/]sticker(*) (.+)$",
-    "^[!#/](sticker) (.+)$",
-    "^[!#/]sticker(*) (.+) (.+)$",
-    "^[!#/]sticker (3) (.+) (.+) (.+)$",
-        "^[!#/]sticker(*)2 (.+) (.+)$",
-        "^[!#/]sticker (2) (.+) (.+)$",
-    "^[!#/]sticker(*)3 (.+) (.+) (.+)$", 
-    "^[!#/]sticker(*)4 (.+) (.+) (.+) (.+) (.+)$",
-    "^[!#/]sticker (4) (.+) (.+) (.+) (.+) (.+)$"
-  },
+  patterns = {"^[sS]ticker(*) (.+)$","^([sS]ticker) (.+)$","^[sS]ticker(*) (.+) (.+)$","^[sS]ticker (3) (.+) (.+) (.+)$","^[sS]ticker(*)2 (.+) (.+)$","^[sS]ticker (2) (.+) (.+)$","^[sS]ticker(*)3 (.+) (.+) (.+)$", "^[sS]ticker(*)4 (.+) (.+) (.+) (.+) (.+)$","^[sS]ticker (4) (.+) (.+) (.+) (.+) (.+)$"},
   run = run
 }
-
 end
