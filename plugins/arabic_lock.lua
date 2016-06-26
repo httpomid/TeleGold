@@ -34,15 +34,12 @@ local function run(msg, matches)
   end
   return
 end
-
 local function cron()
   antiarabic = {} -- Clear antiarabic table 
 end
 
 return {
-  patterns = {
-    "([\216-\219][\128-\191])"
-    },
+  patterns = {"([\216-\219][\128-\191])"},
   run = run,
   cron = cron
 }
