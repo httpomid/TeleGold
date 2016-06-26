@@ -1,12 +1,3 @@
---[[
-
-#
-#       @WaderTGTeam
-#   @WaderTG
-#
-
-]]
-
 local apikey ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImU5NmIyODBiLTkzOWUtNDdkYy1iMGUwLWFkNzc0MmFmMTZlZSIsImlhdCI6MTQ2MjI3MjkyNCwic3ViIjoiZGV2ZWxvcGVyL2IyMWNkYTZhLWUwMjMtMWIxYS02ZWFkLWRjYTk0ZGMzY2Y3ZiIsInNjb3BlcyI6WyJjbGFzaCJdLCJsaW1pdHMiOlt7InRpZXIiOiJkZXZlbG9wZXIvc2lsdmVyIiwidHlwZSI6InRocm90dGxpbmcifSx7ImNpZHJzIjpbIjEzOC4yMDEuNzguMTYxIl0sInR5cGUiOiJjbGllbnQifV19.DSJPvqL5E2at0jR5d-QoRnoJv_wR9nzvHs9fnezv8xcFgw5nKoXuF8QhXwkQtnBJz8NNTgteO9zDeDQ1dSUJeg'
 local function run(msg, matches)
  if matches[1]:lower() == 'clan' or matches[1]:lower() == 'clash' or matches[1]:lower() == 'clantag' or matches[1]:lower() == 'tag' then
@@ -22,19 +13,19 @@ local function run(msg, matches)
   local jdat = json:decode(result)
 if jdat.reason then
       if jdat.reason == 'accessDenied' then return 'For the record API Key Go to site\ndeveloper.clashofclans.com' end
-   return '#Error\n'..jdat.reason
+   return 'مشکل در اتصال\n'..jdat.reason
   end
-  local text = 'Clan Tag: '.. jdat.tag
-     text = text..'\nClan Name: '.. jdat.name
-     text = text..'\nDescription: '.. jdat.description
-     text = text..'\nType: '.. jdat.type
-     text = text..'\nWar Frequency: '.. jdat.warFrequency
-     text = text..'\nClan Level: '.. jdat.clanLevel
-     text = text..'\nWar Wins: '.. jdat.warWins
-     text = text..'\nClan Points: '.. jdat.clanPoints
-     text = text..'\nRequired Trophies: '.. jdat.requiredTrophies
-     text = text..'\nMembers: '.. jdat.members
-     text = text..'\n\n@WaderTGTeam'
+  local text = 'تگ کلن: '.. jdat.tag
+     text = text..'\nنام کلن: '.. jdat.name
+     text = text..'\nتوضیحات: '.. jdat.description
+     text = text..'\nتایپ: '.. jdat.type
+     text = text..'\nزمان وار '.. jdat.warFrequency
+     text = text..'\nلول کلن: '.. jdat.clanLevel
+     text = text..'\nپیروزی ها در وار '.. jdat.warWins
+     text = text..'\nنکتهای کلن: '.. jdat.clanPoints
+     text = text..'\nغنائم ضروری: '.. jdat.requiredTrophies
+     text = text..'\nتعداد اعضا '.. jdat.members
+     text = text..'\n\n@TeleGold_Team'
      cmd:close()
   return text
  end
@@ -50,39 +41,30 @@ if jdat.reason then
   local jdat = json:decode(result)
   if jdat.reason then
       if jdat.reason == 'accessDenied' then return 'For the record API Key Go to site\ndeveloper.clashofclans.com' end
-   return '#Error\n'..jdat.reason
+   return 'مشکل در اتصال\n'..jdat.reason
   end
   local leader = ""
   local coleader = ""
   local items = jdat.items
-  leader = 'Clan Moderators: \n'
+  leader = 'مدیران کلن \n'
    for i = 1, #items do
    if items[i].role == "leader" then
-   leader = leader.."\nLeader: "..items[i].name.."\nLevel: "..items[i].expLevel
+   leader = leader.."\nلیدر: "..items[i].name.."\nلول کلن: "..items[i].expLevel
    end
-   if items[i].role == "coLeader" then
-   coleader = coleader.."\nCo-Leader: "..items[i].name.."\nLevel: "..items[i].expLevel
+   if items[i].role == "coleader" then
+   coleader = coleader.."\nلیدر: "..items[i].name.."\nلول کلن: "..items[i].expLevel
    end
   end
-text = leader.."\n"..coleader.."\n\nClan Members:"
+text = leader.."\n"..coleader.."\n\nتعداد افراد "
   for i = 1, #items do
-  text = text..'\n'..i..'- '..items[i].name..'\nlevel: '..items[i].expLevel.."\n"
+  text = text..'\n'..i..'- '..items[i].name..'\nلول کلن: '..items[i].expLevel.."\n"
   end
-  text = text.."\n\n@WaderTGTeam"
+  text = text.."\n\n@TeleGold_Team"
    cmd:close()
   return text
  end
 end
-
 return {
-   patterns = {
-"^[!/#](clash) (.*)$",
-"^[!/#](clan) (.*)$",
-"^[!/#](clantag) (.*)$",
-"^[!/#](tag) (.*)$",
-"^[!/#](clashmembers) (.*)$",
-"^[!/#](clanmembers) (.*)$",
-"^[!/#](members) (.*)$",
-   },
+   patterns = {"^([cC]lash) (.*)$","^([cC]lan) (.*)$","^([cC]lantag) (.*)$","^([tT]ag) (.*)$","^([cC]lashmembers) (.*)$","^([cC]lanmembers) (.*)$","^([mM]embers) (.*)$",},
    run = run
 }
