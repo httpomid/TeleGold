@@ -27,10 +27,9 @@ local function run(msg,matches)
     	return 'Please send your sticker now'
     end
 end
-
 return {
   patterns = {
-  "^[!/#](tophoto)$",
+  "^([Tt]ophoto)$",
   "%[(document)%]",
   },
   run = run,
