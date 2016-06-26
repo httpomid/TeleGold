@@ -16,7 +16,6 @@ local function isABot (user)
   local result = bit32.band(user.flags, binFlagIsBot)
   return result == binFlagIsBot
 end
-
 local function isABotBadWay (user)
   local username = user.username or ''
   return username:match("[Bb]ot$")
@@ -30,23 +29,20 @@ local user = 'user#id'..userId
     end
   end, {chat=chat, user=user})
 end
-
 local function run (msg, matches)
-
   if matches[1] ~= 'chat_add_user' and matches[1] ~= 'chat_add_user_link' then
     if msg.to.type ~= 'chat' and msg.to.type ~= 'channel' then
       return nil
     end
   end
-
   local chatId = msg.to.id
   if matches[1] == 'lock' then
     enableAntiBot(chatId)
-  return 'bot has been locked'
+  return 'ورود ربات قفل شد'
   end
   if matches[1] == 'unlock' then
     disableAntiBot(chatId)
-  return 'bot has been unlocked'
+  return 'قفل ربات باز شد'
   end
   if matches[1] == 'chat_add_user' or matches[1] == 'chat_add_user_link' then
     local user = msg.action.user or msg.from
@@ -64,21 +60,12 @@ local function run (msg, matches)
     end
   end
 end
-
 return {
   description = 'Anti bot',
   usage = {
     '/bot lock: locked add bots to supergroup',
     '/bot unlock: unlock add bots to supergroup'
   },
-  patterns = {
-    '^/bot (lock)$',
-    '^/bot (unlock)$',
-    '^!!tgservice (chat_add_user)$',
-    '^!!tgservice (chat_add_user_link)$'
-  },
+  patterns = {'^[bB]ot (lock)$','^[bB]ot (unlock)$','^!!tgservice (chat_add_user)$','^!!tgservice (chat_add_user_link)$'},
   run = run
 }
-
---shared by @WaderTGTeam
---by @WaderTG
