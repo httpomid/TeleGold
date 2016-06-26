@@ -1,8 +1,6 @@
 local helpers = require "OAuth.helpers"
-
 local base = 'https://screenshotmachine.com/'
 local url = base .. 'processor.php'
-
 local function get_webshot_url(param)
    local response_body = {}
    local request_constructor = {
@@ -42,15 +40,12 @@ local function run(msg, matches)
       send_photo_from_url(receiver, imgurl)
    end
 end
-
-
 return {
    description = "Send an screenshot of a website.",
    usage = {
-      "!webshot [url]: Take an screenshot of the web and send it back to you."
+      "webshot [url]: Take an screenshot of the web and send it back to you."
    },
    patterns = {
-      "^[/!#][wW]ebshot (https?://[%w-_%.%?%.:/%+=&]+)$",
-   },
+      "^[wW]ebshot (https?://[%w-_%.%?%.:/%+=&]+)$"},
    run = run
 }
