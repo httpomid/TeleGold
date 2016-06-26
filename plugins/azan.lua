@@ -1,11 +1,3 @@
---[[
-
-#
-#     @GPMOD
-#   @Dragon_Born
-#      
-
-]]
 do
 function run_bash(str)
     local cmd = io.popen(str)
@@ -23,7 +15,6 @@ function get_latlong(area)
   local res, code = https.request(api..parameters)
   if code ~=200 then return nil  end
   local data = json:decode(res)
- 
   if (data.status == "ZERO_RESULTS") then
     return nil
   end
@@ -42,21 +33,17 @@ function get_staticmap(area)
   local scale = types[1]
   if     scale=="locality" then zoom=8
   elseif scale=="country"  then zoom=4
-  else zoom = 13 end
-    
+  else zoom = 13 end 
   local parameters =
     "size=600x300" ..
     "&zoom="  .. zoom ..
     "&center=" .. URL.escape(area) ..
     "&markers=color:red"..URL.escape("|"..area)
-
   if api_key ~=nil and api_key ~= "" then
     parameters = parameters .. "&key="..api_key
   end
   return lat, lng, api..parameters
 end
-
-
 function run(msg, matches)
 	local hash = 'usecommands:'..msg.from.id..':'..msg.to.id
 	redis:incr(hash)
@@ -66,19 +53,18 @@ function run(msg, matches)
 	city = 'Tehran'
 	end
 	local lat,lng,url	= get_staticmap(city)
-
 	local dumptime = run_bash('date +%s')
 	local code = http.request('http://api.aladhan.com/timings/'..dumptime..'?latitude='..lat..'&longitude='..lng..'&timezonestring=Asia/Tehran&method=7')
 	local jdat = json:decode(code)
 	local data = jdat.data.timings
-	local text = '🔱شهر: '..city
-	  text = text..'\n🔱اذان صبح: '..data.Fajr
-	  text = text..'\n🔱طلوع آفتاب: '..data.Sunrise
-	  text = text..'\n🔱اذان ظهر: '..data.Dhuhr
-	  text = text..'\n🔱غروب آفتاب: '..data.Sunset
-	  text = text..'\n🔱اذان مغرب: '..data.Maghrib
-	  text = text..'\n🔱عشاء : '..data.Isha
-	  text = text..'\n\n🔱 @TeleGold_Team 🔱'
+	local text = 'شهر: '..city
+	  text = text..'\nاذان صبح: '..data.Fajr
+	  text = text..'\nطلوع آفتاب: '..data.Sunrise
+	  text = text..'\nاذان ظهر: '..data.Dhuhr
+	  text = text..'\nغروب آفتاب: '..data.Sunset
+	  text = text..'\nاذان مغرب: '..data.Maghrib
+	  text = text..'\nعشاء: '..data.Isha
+	  text = text..'\n\n @TeleGold_Team '
 	if string.match(text, '0') then text = string.gsub(text, '0', '۰') end
 	if string.match(text, '1') then text = string.gsub(text, '1', '۱') end
 	if string.match(text, '2') then text = string.gsub(text, '2', '۲') end
@@ -91,10 +77,8 @@ function run(msg, matches)
 	if string.match(text, '9') then text = string.gsub(text, '9', '۹') end
 	return text
 end
-
 return {
-  patterns = {"^[/#!][aA]zan (.*)$","^[/#!](azan)$"}, 
+  patterns = {"^[aA]zan (.*)$","^([aA]zan)$"}, 
   run = run 
 }
-
 end
