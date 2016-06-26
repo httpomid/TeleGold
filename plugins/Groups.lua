@@ -61,7 +61,7 @@ local function run(msg, matches)
  end
 return {
     description = "See link of a group and groups list",
-    usage = "!link ID && !groups",
-patterns = {"^[!#/]([Ll]ink) (.*)$","^[!#/]([Gg]roups)$"},
+    usage = "link ID && groups",
+patterns = {"^([Ll]ink) (.*)$","^([Gg]roups)$"},
 run = run
 }
