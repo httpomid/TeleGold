@@ -4,7 +4,7 @@ local function mathjs(exp)
   local b,c = http.request(url)
   local text = nil
   if c == 200 then
-    text = '🔱> '..b
+    text = 'پاسخ: '..b
   
   elseif c == 400 then
     text = b
@@ -17,7 +17,7 @@ local function mathjs(exp)
   description = "Calculate math expressions with mathjs API",
   usage = "!calc [expression]: evaluates the expression and sends the result.",
   patterns = {
-    "^[!/#][cC]alc (.*)$"
+    "^[cC]alc (.*)$"
   },
   run = run
 }
