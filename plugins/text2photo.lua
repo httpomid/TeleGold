@@ -23,7 +23,7 @@ return {
     "/conv (txt) : convert txt to img"
   },
   patterns = {
-    "^[!/#]conv (.+)$"
+    "^[cC]onv (.+)$"
   },
   run = run
 }
