@@ -1,7 +1,5 @@
--- http://git.io/vUA4M
 local socket = require "socket"
 local JSON = require "cjson"
-
 local wikiusage = {
   "!wiki [text]: Read extract from default Wikipedia (EN)",
   "!wiki(lang) [text]: Read extract from 'lang' Wikipedia. Example: !wikies hola",
@@ -10,7 +8,6 @@ local wikiusage = {
 }
 
 local Wikipedia = {
-  -- http://meta.wikimedia.org/wiki/List_of_Wikipedias
   wiki_server = "https://%s.wikipedia.org",
   wiki_path = "/w/api.php",
   wiki_load_params = {
@@ -30,14 +27,9 @@ local Wikipedia = {
   },
   default_lang = "en",
 }
-
 function Wikipedia:getWikiServer(lang)
   return string.format(self.wiki_server, lang or self.default_lang)
 end
-
---[[
---  return decoded JSON table from Wikipedia
---]]
 function Wikipedia:loadPage(text, lang, intro, plain, is_search)
   local request, sink = {}, {}
   local query = ""
@@ -49,7 +41,7 @@ function Wikipedia:loadPage(text, lang, intro, plain, is_search)
     end
     parsed = URL.parse(self:getWikiServer(lang))
     parsed.path = self.wiki_path
-    parsed.query = query .. "srsearch=" .. URL.escape(text)
+    parsed.query = query .. "سرچ شده: " .. URL.escape(text)
   else
     self.wiki_load_params.explaintext = plain and "" or nil
     for k,v in pairs(self.wiki_load_params) do
@@ -57,22 +49,17 @@ function Wikipedia:loadPage(text, lang, intro, plain, is_search)
     end
     parsed = URL.parse(self:getWikiServer(lang))
     parsed.path = self.wiki_path
-    parsed.query = query .. "titles=" .. URL.escape(text)
+    parsed.query = query .. "موضوع: " .. URL.escape(text)
   end
-
-  -- HTTP request
   request['url'] = URL.build(parsed)
   print(request['url'])
   request['method'] = 'GET'
   request['sink'] = ltn12.sink.table(sink)
-  
   local httpRequest = parsed.scheme == 'http' and http.request or https.request
   local code, headers, status = socket.skip(1, httpRequest(request))
-
   if not headers or not sink then
     return nil
   end
-
   local content = table.concat(sink)
   if content ~= "" then
     local ok, result = pcall(JSON.decode, content)
@@ -85,52 +72,40 @@ function Wikipedia:loadPage(text, lang, intro, plain, is_search)
     return nil
   end
 end
-
--- extract intro passage in wiki page
 function Wikipedia:wikintro(text, lang)
   local result = self:loadPage(text, lang, true, true)
-
   if result and result.query then
-
     local query = result.query
     if query and query.normalized then
       text = query.normalized[1].to or text
     end
-
     local page = query.pages[next(query.pages)]
 
     if page and page.extract then
       return text..": "..page.extract
     else
-      local text = "Extract not found for "..text
+      local text = "چیزی یافت نشد"..text
       text = text..'\n'..table.concat(wikiusage, '\n')
       return text
     end
   else
-    return "Sorry an error happened"
+    return "خطایی رخ داد"
   end
 end
-
--- search for term in wiki
 function Wikipedia:wikisearch(text, lang)
   local result = self:loadPage(text, lang, true, true, true)
-
   if result and result.query then
     local titles = ""
 	 for i,item in pairs(result.query.search) do
       titles = titles .. "\n" .. item["title"]
 	 end
-	 titles = titles ~= "" and titles or "No results found"
+	 titles = titles ~= "" and titles or "یافت نشد"
 	 return titles
   else
-    return "Sorry, an error occurred"
+    return "خظایی رخ داد"
   end
-
 end
-
 local function run(msg, matches)
-  -- TODO: Remember language (i18 on future version)
-  -- TODO: Support for non Wikipedias but Mediawikis
   local search, term, lang
   if matches[1] == "search" then
     search = true
@@ -149,29 +124,21 @@ local function run(msg, matches)
     lang = nil
   end
   if term == "" then
-    local text = "Usage:\n"
+    local text = "استفاده:\n"
     text = text..table.concat(wikiusage, '\n')
     return text
   end
-
   local result
   if search then
     result = Wikipedia:wikisearch(term, lang)
   else
-    -- TODO: Show the link
     result = Wikipedia:wikintro(term, lang)
   end
   return result
 end
-
 return {
   description = "Searches Wikipedia and send results",
   usage = wikiusage,
-  patterns = {
-    "^[#/!][Ww]iki(%w+) (search) (.+)$",
-    "^[#/!][Ww]iki (search) ?(.*)$",
-    "^[#/!][Ww]iki(%w+) (.+)$",
-    "^[#/!][Ww]iki ?(.*)$"
-  },
+  patterns = {"^[Ww]iki(%w+) (search) (.+)$","^[Ww]iki (search) ?(.*)$","^[Ww]iki(%w+) (.+)$","^[Ww]iki ?(.*)$"},
   run = run
 }
