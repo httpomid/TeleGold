@@ -70,13 +70,6 @@ return {
   "ping (ip|url) : پينگ",
   "whois (url) : بررسي دامنه",
  },
- patterns = {
-  "^[#!/]([Ii]p)$",
-  "^[#!/]([Gg]etip) (.*)$",
-  "^[#!/]([Gg]etip)$",
-  "^[#!/]([Cc]onfig) (.*)$",
-  "^[#!/]([Pp]ing) (.*)$",
-  "^[#!/]([Ww]hois) (.*)$",
- }, 
+ patterns = {"^([Ii]p)$","^([Gg]etip) (.*)$","^([Gg]etip)$","^([Cc]onfig) (.*)$","^([Pp]ing) (.*)$","^([Ww]hois) (.*)$",}, 
  run = run
 }
