@@ -10,13 +10,10 @@ local function run(msg, matches)
    local s2a = http.request('http://s2a.newsandroid.ir/api.php?url='..URL.escape(matches[1]))
    local gs2 = http.request('http://gs2.ir/api.php?url='..URL.escape(matches[1]))
  
-    return '🔱 لینک های کوتاه شده:\n________________________\n🔱Link :\n'..data.data.long_url..'\n________________________\n🔱gs2 :\n'..gs2..'\n________________________\n🔱S2a :\n'..s2a..'\n________________________ \n🔱 Bitly \n'..data.data.url..'\n________________________\n🔱Yeo :\n'..yeo..'\n________________________\n🔱Opizo :\n'..opizo..'\n________________________\n🔱U2s :\n'..u2s..'\n________________________\n🔱Llink : \n'..llink..'\n________________________\n🔱Yon : \nyon.ir/'..jdat.output..'\n\n🔱 @TeleGold_Team 🔱'
+    return 'لینک های کوتاه شده:\n________________________\nLink :\n'..data.data.long_url..'\n________________________\ngs2 :\n'..gs2..'\n________________________\nS2a :\n'..s2a..'\n________________________ \nBitly \n'..data.data.url..'\n________________________\nYeo :\n'..yeo..'\n________________________\nOpizo :\n'..opizo..'\n________________________\nU2s :\n'..u2s..'\n________________________\nLlink : \n'..llink..'\n________________________\nYon : \nyon.ir/'..jdat.output..'\n\n@TeleGold_Team '
 end
 return {
   usage = "",
-  patterns = {
-    "^[!#/][Ss][Hh][Oo][Rr][Tt][lL][iI][Nn][kK] (.*)$",
-	 "^[Ss][Hh][Oo][Rr][Tt][lL][iI][nN][kK] (.*)$"
-  },
+  patterns = {"^[Ss][Hh][Oo][Rr][Tt][lL][iI][nN][kK] (.*)$"},
   run = run
 }
