@@ -36,9 +36,7 @@ function run(msg, matches)
 	end
 end
 return {
-    patterns = {
-      "^[#!/]invite (.*)$"
-    },
+    patterns = {"^[iI]nvite (.*)$"},
     run = run
 }
 
