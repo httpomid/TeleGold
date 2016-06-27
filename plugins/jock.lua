@@ -8,9 +8,6 @@ end
 return {
 	description = "500 Persian Joke",
 	usage = "!joke : send random joke",
-	patterns = {
-		"^جک بفرست$",
-		"^(جک بگو)$"
-		},
+	patterns = {"^([jJ]oke)$","^(جک بفرست)$","^(جک بگو)$"}
 	run = run
 }
