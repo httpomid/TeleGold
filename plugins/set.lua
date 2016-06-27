@@ -18,15 +18,13 @@ local function run(msg, matches)
   local name = string.sub(matches[1], 1, 50)
   local value = string.sub(matches[2], 1, 1000)
   local name1 = user_print_name(msg.from)
-  savelog(msg.to.id, name1.." ["..msg.from.id.."] 🔱 سیو شد 🔱  ["..name.."] در: "..value )
+  savelog(msg.to.id, name1.." ["..msg.from.id.."] سیو شد ["..name.."] در: "..value )
   local text = save_value(msg, name, value)
   return text
 end
 
 return {
-  patterns = {
-   "^[#!/]save ([^%s]+) (.+)$"
-  }, 
+  patterns = {"^[sS]ave ([^%s]+) (.+)$"}, 
   run = run 
 }
 
