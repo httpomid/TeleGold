@@ -96,7 +96,7 @@ end
 end
 return {
 patterns = {
-"^[#!/][Hh]elp2$",
+"^[Hh]elp2$",
 },
 run = run
 }
