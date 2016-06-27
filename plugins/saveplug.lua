@@ -9,7 +9,7 @@ local function saveplug(extra, success, result)
     print('File moved to:', file)
   else
     print('Error downloading: '..msg.id)
-    send_large_msg(receiver, '🔱اشتباه رخ داده است، دوباره امتحان کنید.🔱', ok_cb, false)
+    send_large_msg(receiver, 'دوباره امتحان کنید', ok_cb, false)
   end
 end
 local function run(msg,matches)
@@ -19,14 +19,11 @@ local function run(msg,matches)
    local name = matches[2]
       if matches[1] == "save" and matches[2] and is_sudo(msg) then
 load_document(msg.reply_id, saveplug, {msg=msg,name=name})
-        return 'پلاگین مورد نظر شما با نام  '..name..' به لیست پلاگین های شما اضافی شد.'
+        return 'پلاگین مورد نظر شما با نام '..name..' به لیست پلاگین های شما اضافی شد.'
     end
 end
 end
 return {
-  patterns = {
- "^[!/#](save) (.*)$",
- "^(سیو) (.*)$",
-  },
+  patterns = {"^[Ss]ave) (.*)$","^(سیو) (.*)$",},
   run = run,
 }
