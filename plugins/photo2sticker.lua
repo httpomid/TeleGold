@@ -30,7 +30,7 @@ end
 
 return {
   patterns = {
-  "^[!/#](tosticker)$",
+  "^([tT]osticker)$",
   "%[(photo)%]",
   },
   run = run,
