@@ -10,7 +10,7 @@ local function savefile(extra, success, result)
     print('File moved to:', file)
   else
     print('Error downloading: '..msg.id)
-    send_large_msg(receiver, '🔱 متأسفم، انجام نشد! دوباره تلاش کنید. 🔱', ok_cb, false)
+    send_large_msg(receiver, 'انجام نشد', ok_cb, false)
   end
 end
 local function run(msg,matches)
@@ -21,18 +21,18 @@ local function run(msg,matches)
    local name = matches[3]
       if matches[1] == "file" and matches[2] and matches[3] and is_sudo(msg) then
 load_document(msg.reply_id, savefile, {msg=msg,name=name,adress=adress})
-        return '🔱 فایل شما با نام: '..name..' ذخیره شد در: \n./'..adress
+        return ' فایل شما با نام: '..name..' ذخیره شد در: \n./'..adress
       end
       
          if not is_sudo(msg) then
-           return "🔱 فقط براس سازندگان ربات تله گولد امکان پذیر است. 🔱"
+           return "فقط سازندگان"
          end
 end
 end
 return {
   patterns = {
- "^[!/#]([Ff]ile) (.*) (.*)$",
-"^[!/#]([sS]ive) (.*) (.*)$",
+ "^([Ff]ile) (.*) (.*)$",
+"^([sS]ive) (.*) (.*)$",
   },
   run = run,
 }
