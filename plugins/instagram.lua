@@ -1,26 +1,24 @@
-
-
-local access_token = "3084249803.280d5d7.999310365c8248f8948ee0f6929c2f02" -- your api key
+local access_token = "3084249803.280d5d7.999310365c8248f8948ee0f6929c2f02"
 local function instagramUser(msg, query)
     local receiver = get_receiver(msg)
-	local url = "https://api.instagram.com/v1/users/search?q="..URL.escape(query).."&access_token="..access_token
+	local url = "https:api.instagram.comv1userssearch?q="..URL.escape(query).."&access_token="..access_token
 	local jstr, res = https.request(url)
 	if res ~= 200 then
-		return "🔱 با عرض پوزش ارتباط بر قرار نشد! 🔱"
+		return "با عرض پوزش ارتباط بر قرار نشد"
     end
 	local jdat = json:decode(jstr)
-	if #jdat.data == 0 then
-		send_msg(receiver,"#Error\nUsername not found",ok_cb,false)
+	if jdat.data == 0 then
+		send_msg(receiver,"Error\nUsername not found",ok_cb,false)
 	end
 	if jdat.meta.error_message then
-		send_msg(receiver,"#Error\n"..jdat.meta.error_message,ok_cb,false)
+		send_msg(receiver,"Error\n"..jdat.meta.error_message,ok_cb,false)
 	end
 	local id = jdat.data[1].id
-	local gurl = "https://api.instagram.com/v1/users/"..id.."/?access_token="..access_token
+	local gurl = "https:api.instagram.comv1users"..id.."?access_token="..access_token
 	local ress = https.request(gurl)
 	local user = json:decode(ress)
    	if user.meta.error_message then
-		send_msg(receiver,"#Error\n"..user.meta.error_message,ok_cb,false)
+		send_msg(receiver,"Error\n"..user.meta.error_message,ok_cb,false)
 	end
 	local text = ''
 	if user.data.bio ~= '' then
@@ -40,41 +38,39 @@ local function instagramUser(msg, query)
 	if user.data.website ~= '' then
 		text = text.."Website: "..user.data.website.."\n"
 	end
-	text = text.."\n@WaderTGTeam"
-	local file_path = download_to_file(user.data.profile_picture,"insta.png")     -- disable this line if you want to send profile photo as sticker
-	--local file_path = download_to_file(user.data.profile_picture,"insta.webp")    -- enable this line if you want to send profile photo as sticker
+	text = text.."\n@TeleGold_Team"
+	local file_path = download_to_file(user.data.profile_picture,"insta.png")
 	local cb_extra = {file_path=file_path}
     local mime_type = mimetype.get_content_type_no_sub(ext)
-	send_photo(receiver, file_path, rmtmp_cb, cb_extra)  -- disable this line if you want to send profile photo as sticker
-	--send_document(receiver, file_path, rmtmp_cb, cb_extra)  -- enable this line if you want to send profile photo as sticker
+	send_photo(receiver, file_path, rmtmp_cb, cb_extra)
 	send_msg(receiver,text,ok_cb,false)
 end
 
 local function instagramMedia(msg, query)
     local receiver = get_receiver(msg)
-	local url = "https://api.instagram.com/v1/media/shortcode/"..URL.escape(query).."?access_token="..access_token
+	local url = "https:api.instagram.comv1mediashortcode"..URL.escape(query).."?access_token="..access_token
 	local jstr, res = https.request(url)
 	if res ~= 200 then
-		return "🔱 با عرض پوزش ارتباط برقرار نشد! 🔱"
+		return "با عرض پوزش ارتباط برقرار نشد"
     end
 	local jdat = json:decode(jstr)
 	if jdat.meta.error_message then
-		send_msg(receiver,"#Error\n"..jdat.meta.error_type.."\n"..jdat.meta.error_message,ok_cb,false)
+		send_msg(receiver,"خطایی رخ داد\n"..jdat.meta.error_type.."\n"..jdat.meta.error_message,ok_cb,false)
 	end
 	local text = ''
 	local data = ''
 	if jdat.data.caption then
 	      data = jdat.data.caption
-	      text = text.."🔱 یوزر کاربری: "..data.from.username:upper().."\n\n"
+	      text = text.." یوزر کاربری: "..data.from.username:upper().."\n\n"
 		  text = text..data.from.full_name.."\n\n"
 		  text = text..data.text.."\n\n"
-		  text = text.."🔱 تعداد لایک: "..jdat.data.likes.count.."\n"
+		  text = text.." تعداد لایک: "..jdat.data.likes.count.."\n"
     else
 	      text = text.."Username: "..jdat.data.user.username:upper().."\n"
-		  text = text.."🔱 نام: "..jdat.data.user.full_name.."\n"
-		  text = text.."🔱 تعداد لایک: "..jdat.data.likes.count.."\n"
+		  text = text.." نام: "..jdat.data.user.full_name.."\n"
+		  text = text.." تعداد لایک: "..jdat.data.likes.count.."\n"
 	end
-	text = text.."\n🔱 TeleGold_Team 🔱\n‌"
+	text = text.."\n TeleGold_Team \n‌"
 	send_msg(receiver,text,ok_cb,false)
 end
 local function run(msg, matches)
@@ -84,18 +80,18 @@ if matches[1] == "insta" and not matches[3] then
 end
 if matches[1] == "insta" and matches[3] then
     local media = matches[3]
-    if string.match(media , '/') then media = media:gsub("/", "") end
+    if string.match(media , '') then media = media:gsub("", "") end
     return instagramMedia(msg,media)
 end
 end
 return {
    patterns = {
-   "^[!/#]([Ii]nsta) ([Hh]ttps://www.instagram.com/p/)([^%s]+)$",
-   "^[!/#]([Ii]nsta) ([Hh]ttps://www.instagram.com/_u/)([^%s]+)$",
-   "^[!/#]([Ii]nsta) ([Hh]ttps://instagram.com/p/)([^%s]+)$",
-   "^[!/#]([Ii]nsta) ([Hh]ttp://www.instagram.com/p/)([^%s]+)$",
-   "^[!/#]([Ii]nsta) ([Hh]ttp://instagram.com/p/)([^%s]+)$",
-   "^[!/#]([Ii]nsta) ([^%s]+)$"
+   "^([Ii]nsta) ([Hh]ttps:www.instagram.comp)([^%s]+)$",
+   "^([Ii]nsta) ([Hh]ttps:www.instagram.com_u)([^%s]+)$",
+   "^([Ii]nsta) ([Hh]ttps:instagram.comp)([^%s]+)$",
+   "^([Ii]nsta) ([Hh]ttp:www.instagram.comp)([^%s]+)$",
+   "^([Ii]nsta) ([Hh]ttp:instagram.comp)([^%s]+)$",
+   "^([Ii]nsta) ([^%s]+)$"
    },
    run = run
 }
