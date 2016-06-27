@@ -39,16 +39,8 @@ end
 end
 end
 return {
-    patterns = {
-        '^[/!#](lock) forward$',
-        '^[/!#](unlock) forward$',
-		'^[/!#]forward (status)$',
-    },
+    patterns = {'^([lL]ock) forward$','^([uU]nlock) forward$','^forward (status)$',},
     run = run,
     pre_process = pre_process
 }
 end
-
---fix for channel by @WaderTGTeam
-
---Tnx to WaderTG Team
