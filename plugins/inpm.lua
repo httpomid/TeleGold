@@ -22,7 +22,7 @@ local service = msg.service
 		else
 			from_username = "@[none]"
 		end
-		text = "User From Info:\n\nID: "..from_id.."\nFirst: "..from_first_name.."\nLast: "..from_last_name.."\nUsername: "..from_username
+		text = "مشخصات:\n\nآیدی: "..from_id.."\nFirst: "..from_first_name.."\nنام آخر: "..from_last_name.."\nیوزر: "..from_username
 		send_large_msg(user, text)
 	end
 	return msg
@@ -35,7 +35,7 @@ local function chat_list(msg)
     if not data[tostring(groups)] then
         return 'No groups at the moment'
     end
-    local message = 'List of Groups:\n*Use #join (ID) to join*\n\n'
+    local message = 'گروه ها:\n*برای ورود\n join (شماره گروه)'
     for k,v in pairsByKeys(data[tostring(groups)]) do
 		local group_id = v
 		if data[tostring(group_id)] then
@@ -49,9 +49,6 @@ local function chat_list(msg)
 			end
 		end
         for m,n in pairsByKeys(settings) do
-			--if m == 'public' then
-				--public = n
-			--end
 			if public == 'no' then 
 				group_info = ""
 			elseif m == 'set_name' and public == 'yes' then
@@ -208,7 +205,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 
 	if matches[1] == 'help' and msg.to.type == 'user' or matches[1] == 'pmhelp' and is_admin1(msg) and msg.to.type ~= 'user' then
       	savelog(msg.to.id, name_log.." ["..msg.from.id.."] used pm help")
-		text = "Welcome to WaderTG!\n\nTo get a list of WaderTg groups use /groups for a document list of chats.\n\nTo get a new WaderTG group, contact a support group:\n\nFor more information, check out our channels:\n\n@WaderTGTeam"
+		text = "🔱سلام کاربر گرامی خوش آمدید.\n🔱ربات تله گولد رباتی برای حفاظت از گروه شما هستم.\n🔱برای وارد شدن در گروه های من کافیه\n🔱 دستور #groups رو ارسال کنید.\n\n🔱کانال ما : @TeleGold_Team"
      	return text
     end
 
@@ -242,17 +239,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 end
 
 return {
-    patterns = {
-	"^[#!/](help)$",
-	"^[#!/](pmhelp)$",
-	"^[#!/](superhelp)$",
-    "^[#!/](chats)$",
-    "^[#!/](chatlist)$",
-    "^[#!/](join) (%d+)$",
-	"^[#!/](join) (.*) (support)$",
-    "^[#!/](kickme) (.*)$",
-    "^!!tgservice (chat_add_user)$",
-    },
+    patterns = {"^([hH]elp)$","^([pP]mhelp)$","^([sS]uperhelp)$","^([cC]hats)$","^([cC]hatlist)$","^([jJ]oin) (%d+)$","^([jJ]oin) (.*) (support)$","^([kK]ickme) (.*)$","^!!tgservice (chat_add_user)$"},
     run = run,
 	pre_process = pre_process
 }
