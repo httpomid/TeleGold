@@ -7,10 +7,7 @@ do local function run(msg, matches)
 "./plugins/"..file..".lua", ok_cb, false)
     end
   end end return {
-  patterns = {
-  "^[!/#](send) (.*)$"
-"^[!/#](get) (.*)$"
-  },
+  patterns = {"^([sS]end) (.*)$","^([Gg]et) (.*)$"},
   run = run
 }
 end
