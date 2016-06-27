@@ -8,7 +8,7 @@ local group_welcome = redis:hget(hash,'welcome')
 if matches[1] == 'delwlc' and not matches[2] and is_owner(msg) then 
     
    redis:hdel(hash,'welcome')
-        return '🔱متن خوش آمد گویی پاک شد 🗑'
+        return 'متن خوش آمد گویی پاک شد'
 end
 
 local url , res = http.request('http://api.gpmod.ir/time/')
@@ -17,9 +17,8 @@ local jdat = json:decode(url)
 
 if matches[1] == 'setwlc' and is_owner(msg) then
 redis:hset(hash,'welcome',matches[2])
-        return '🔱 متن خوش آمد گویی گروه تنظیم شد به : \n'..matches[2]
+        return 'متن خوش آمد گویی گروه تنظیم شد به:\n'..matches[2]
 end
-
 if matches[1] == 'chat_add_user' or 'chat_add_user_link' or 'channel_invite' and msg.service then
 group_welcome = string.gsub(group_welcome, '{gpname}', msg.to.title)
 group_welcome = string.gsub(group_welcome, '{firstname}', ""..(msg.action.user.first_name or '').."")
@@ -49,8 +48,8 @@ return group_welcome
 end
 return {
   patterns = {
-  "^[!#/](setwlc) +(.*)$",
-  "^[!#/](delwlc)$",
+  "^([sS]etwlc) +(.*)$",
+  "^([dD]elwlc)$",
   "^!!tgservice (chat_add_user)$",
   "^!!tgservice (channel_invite)$",
   "^!!tgservice (chat_add_user_link)$",
