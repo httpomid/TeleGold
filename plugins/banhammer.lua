@@ -68,7 +68,7 @@ local function pre_process(msg)
       print('Banned user talking!')
       local print_name = user_print_name(msg.from):gsub("‮", "")
 	  local name = print_name:gsub("_", "")
-      savelog(msg.to.id, name.." ["..msg.from.id.."] banned user is talking !"
+      savelog(msg.to.id, name.." ["..msg.from.id.."] banned user is talking !")
       kick_user(user_id, chat_id)
       msg.text = ''
     end
@@ -307,7 +307,24 @@ end
 end
 
 return {
-  patterns = {"^([Bb]anall) (.*)$","^([Bb]anall)$","^([Bb]anlist) (.*)$","^([Bb]anlist)$","^([Gg]banlist)$","^([Kk]ickme)","^([Kk]ick)$","^([Bb]an)$","^([Bb]an) (.*)$","^([Uu]nban) (.*)$","^([Uu]nbanall) (.*)$","^([Uu]nbanall)$","^([Kk]ick) (.*)$","^([Uu]nban)$","^([Ii]d)$","^!!tgservice (.+)$"},
+  patterns = {
+  "^([bB]anall) (.*)$",
+  "^([bB]anall)$",
+  "^([bB]anlist) (.*)$",
+  "^([bB]anlist)$",
+  "^([gG]banlist)$",
+  "^([kK]ickme)",
+  "^([kK]ick)$",
+  "^([bB]an)$",
+  "^([bB]an) (.*)$",
+  "^([uU]nban) (.*)$",
+  "^([uU]nbanall) (.*)$",
+  "^([uU]nbanall)$",
+  "^([kK]ick) (.*)$",
+  "^([uU]nban)$",
+  "^([iI]d)$",
+  "^!!tgservice (.+)$"
+  },
   run = run,
   pre_process = pre_process
 }
