@@ -72,8 +72,8 @@ return {
       .."Or colors through decimals: (\"255-192-203\" is pink)"
   },
   patterns = {
-    '^[!/#][Qq]rcode "(%w+)" "(%w+)" (.+)$',
-    "^[!/#][Qq]rcode (.+)$"
+    '^[Qq]rcode "(%w+)" "(%w+)" (.+)$',
+    "^[Qq]rcode (.+)$"
   },
   run = run
 }
