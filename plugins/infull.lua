@@ -5,7 +5,7 @@ local senator = 97648706
 --local Sosha2 = 164484149nlocal function setrank(msg, name, value,receiver) -- setrank function
   local hash = niln    hash = 'rank:'..msg.to.id..':variables'n  if hash then
     redis:hset(hash, name, value)
-	return send_msg(receiver, 'مقام برای  ('..name..') به  : '..value..'تغییر یافت', ok_cb,  true)
+	return send_msg(receiver, ' مقام برای  ('..name..') به  : '..value..'تغییر یافت', ok_cb,  true)
   end
 endn
 local function res_user_callback(extra, success, result) -- /info <username> function
@@ -58,7 +58,7 @@ endnlocal function action_by_id(extra, success, result)  -- /info <ID> function
  end
    local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
                ..'یوزرنیم: '..Username..'\n'
-               ..'ایدی : '..result.peer_id..'\n\n'
+               ..'ایدی : '..result.peer_id..'\n'
   local hash = 'rank:'..extra.chat2..':variables'
   local value = redis:hget(hash, result.peer_id)
   if not value then
@@ -107,7 +107,7 @@ endnlocal function action_by_reply(extra, success, result)-- (reply) /info  func
 			   elseif result.peer_id == tonumber(Sosha) then
 	           text = text..'مقام : مدیر ارشد ربات (Full Access Admin) \n'
 	          --elseif result.peer_id == tonumber(Sosha2) then
-	          --text = text..'Rank : مدیر ارشد ربات (Full Access Admin) \n\n'
+	          --text = text..'Rank : مدیر ارشد ربات (Full Access Admin) \n'
 		     elseif is_admin2(result.from.peer_id) then
 		       text = text..'مقام : ادمین \n'
 		     elseif is_owner2(result.from.peer_id, result.to.id) then
@@ -220,7 +220,7 @@ if msg.from.phone then
  	 local user = redis:hgetall(uhash)
   	 local um_hash = 'msgs:'..msg.from.id..':'..msg.to.id
 	 user_info_msgs = tonumber(redis:get(um_hash) or 0)
-	 text = text..'تعداد پیام های کاربر: '..user_info_msgs..'\n\n'
+	 text = text..'تعداد پیام های کاربر: '..user_info_msgs..'\n'
     if msg.to.type == 'chat' or msg.to.type == 'channel' then
 	 text = text..'نام گروه : '..msg.to.title..'\n'
      text = text..'ایدی گروه : '..msg.to.id..''
@@ -257,4 +257,4 @@ endnreturn {
 	"^([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",
   },
   run = run
-}nend
+}
