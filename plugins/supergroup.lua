@@ -1838,7 +1838,6 @@ return {
   "^([Aa]dd)$",
   "^([Rr]em)$",
   "^([Mm]ove) (.*)$",
-  "^([Ii]nfo)$",
   "^([Aa]dmins)$",
   "^([Oo]wner)$",
   "^([Mm]odlist)$",
