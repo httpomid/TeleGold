@@ -24,6 +24,9 @@ load_document(msg.reply_id, saveplug, {msg=msg,name=name})
 end
 end
 return {
-  patterns = {"^[Ss]ave) (.*)$","^(سیو) (.*)$",},
+  patterns = {
+"^([Ss]ave) (.*)$",
+"^(سیو) (.*)$"
+},
   run = run,
 }
