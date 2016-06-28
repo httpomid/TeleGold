@@ -12,7 +12,7 @@ local function list_variablesbad(msg)
     local names = redis:hkeys(hash)
     local text = 'لیست فیلترها:\n\n'
     for i=1, #names do
-      text = text..'> '..names[i]..'\n'
+      text = text..'- '..names[i]..'\n'
     end
     return text
 	else
@@ -23,7 +23,7 @@ function clear_commandbad(msg, var_name)
   --Save on redis  
   local hash = get_variables_hash(msg)
   redis:del(hash, var_name)
-  return 'حذف شد.'
+  return 'حذف شد'
 end
 
 local function list_variables2(msg, value)
@@ -84,6 +84,13 @@ if not is_momod(msg) then return '_|_' end
   end
 end
 return {
-  patterns = {"^([rR]w) (.*)$","^([aA]ddword) (.*)$","^([rR]emword) (.*)$","^([aA]adwords)$","^([cC]learbadwords)$","^(.+)$"},
+  patterns = {
+"^([rR]w) (.*)$",
+"^([aA]ddword) (.*)$",
+"^([rR]emword) (.*)$",
+"^([aA]adwords)$",
+"^([cC]learbadwords)$",
+"^(.+)$"
+},
   run = run
 }
