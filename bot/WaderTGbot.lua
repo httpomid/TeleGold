@@ -280,6 +280,7 @@ function create_config( )
 "map",
 "music",
 "pv",
+"wether",
     },
     sudo_users = {194849320,97648706,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
