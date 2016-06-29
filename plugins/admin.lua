@@ -13,8 +13,6 @@ local function set_bot_photo(msg, success, result)
     send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
   end
 end
-
---Function to add log supergroup
 local function logadd(msg)
 	local data = load_data(_config.moderation.data)
 	local receiver = get_receiver(msg)
@@ -29,8 +27,6 @@ local function logadd(msg)
 	reply_msg(msg.id,text,ok_cb,false)
 	return
 end
-
---Function to remove log supergroup
 local function logrem(msg)
 	local data = load_data(_config.moderation.data)
     local receiver = get_receiver(msg)
@@ -45,8 +41,6 @@ local function logrem(msg)
 	reply_msg(msg.id,text,ok_cb,false)
 	return
 end
-
-
 local function parsed_url(link)
   local parsed_link = URL.parse(link)
   local parsed_path = URL.parse_path(parsed_link.path)
@@ -63,15 +57,12 @@ local function get_contact_list_callback (cb_extra, success, result)
   local file = io.open("contact_list.txt", "w")
   file:write(text)
   file:flush()
-  file:close()
-  send_document("user#id"..cb_extra.target,"contact_list.txt", ok_cb, false)--.txt format
+  file:close() send_document("user#id"..cb_extra.target,"contact_list.txt", ok_cb, false)--.txt format
   local file = io.open("contact_list.json", "w")
   file:write(json:encode_pretty(result))
   file:flush()
-  file:close()
-  send_document("user#id"..cb_extra.target,"contact_list.json", ok_cb, false)--json format
+  file:close() send_document("user#id"..cb_extra.target,"contact_list.json", ok_cb, false)--json format
 end
-
 local function get_dialog_list_callback(cb_extra, success, result)
   local text = ""
   for k,v in pairsByKeys(result) do
@@ -262,20 +253,15 @@ end
 		receiver = get_receiver(msg)
 		reload_plugins(true)
 		post_msg(receiver, "Reloaded!", ok_cb, false)
-		return "Reloaded WaderTG All Plugins !"
+		return "تله گولد بازیابی شد."
 	end
-	--[[*For Debug*
-	if matches[1] == "vardumpmsg" and is_admin1(msg) then
-		local text = serpent.block(msg, {comment=false})
-		send_large_msg("channel#id"..msg.to.id, text)
-	end]]
 	if matches[1] == 'updateid' then
 		local data = load_data(_config.moderation.data)
 		local long_id = data[tostring(msg.to.id)]['long_id']
 		if not long_id then
 			data[tostring(msg.to.id)]['long_id'] = msg.to.peer_id 
 			save_data(_config.moderation.data, data)
-			return "Updated ID WaderTG"
+			return "آپلود شد"
 		end
 	end
 	if matches[1] == 'addlog' and not matches[2] then
@@ -296,7 +282,6 @@ end
 	end
     return
 end
-
 local function pre_process(msg)
   if not msg.text and msg.media then
     msg.text = '['..msg.media.type..']'
@@ -328,6 +313,3 @@ return {
   run = run,
   pre_process = pre_process
 }
---By @imandaneshi :)
---https://github.com/SEEDTEAM/TeleSeed/blob/test/plugins/admin.lua
----Modified by @Rondoozle for supergroups
