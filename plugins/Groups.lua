@@ -4,7 +4,7 @@ local function chat_list(msg)
         if not data[tostring(groups)] then
                 return 'No groups at the moment'
         end
-        local message = 'برای عضوییت در هر گروه بصورت زیر عمل کنید.\n#join شماره گروه\nبرای دریافت لینک هر گروه نیز:\n#link شماره گروه\n_____________________\n'
+        local message = 'برای عضوییت در هر گروه بصورت زیر عمل کنید.\njoin شماره گروه\nبرای دریافت لینک هر گروه نیز:\nlink شماره گروه\n_____________________\n'
         for k,v in pairs(data[tostring(groups)]) do
                 local settings = data[tostring(v)]['settings']
                 for m,n in pairsByKeys(settings) do
