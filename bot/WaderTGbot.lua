@@ -1,5 +1,4 @@
-Skip to content
-  Switch to mobile version
+Switch to mobile version
 This repository
 Search
 Pull requests
