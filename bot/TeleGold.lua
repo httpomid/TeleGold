@@ -1,20 +1,3 @@
-Switch to mobile version
-This repository
-Search
-Pull requests
-Issues
-Gist
- @jorjrobot
- Unwatch 1
-  Star 0
-  Fork 1 jorjrobot/TeleGold
-forked from janlou/TeleGold
- Code  Pull requests 0  Wiki  Pulse  Graphs  Settings
-Branch: supergroups Find file Copy pathWaderTG/bot/TeleGold.lua
-f950750  on 25 Apr
-@groupforspeed groupforspeed Update TeleGold.lua
-1 contributor
-RawBlameHistory    751 lines (622 sloc)  15.1 KB
 package.path = package.path .. ';.luarocks/share/lua/5.2/?.lua'
   ..';.luarocks/share/lua/5.2/?/init.lua'
 package.cpath = package.cpath .. ';.luarocks/lib/lua/5.2/?.so'
@@ -266,160 +249,236 @@ function create_config( )
 	"voice",
 	"wai"
     },
-    sudo_users = {194849320,190079094,168753158,97648706,0,tonumber(our_id)},--Sudo users
+    sudo_users = {194849320,190079094,168753158,97648706,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[WaderTG v4
 An advanced administration bot based on TG-CLI written in Lua
+
 Admins
 @mohammadsdi4799
 @iphonei
 @Amin1779
 @Oo_hamed_ice_fuckeram_oO
+
 Our channels
 @WaderTGTeam
+
 thankyou for all admins bot WaderTG
 ]],
     help_text_realm = [[
 Realm Commands:
+
 !creategroup [Name]
 Create a group
+
 !createrealm [Name]
 Create a realm
+
 !setname [Name]
 Set realm name
+
 !setabout [group|sgroup] [GroupID] [Text]
 Set a group's about text
+
 !setrules [GroupID] [Text]
 Set a group's rules
+
 !lock [GroupID] [setting]
 Lock a group's setting
+
 !unlock [GroupID] [setting]
 Unock a group's setting
+
 !settings [group|sgroup] [GroupID]
 Set settings for GroupID
+
 !wholist
 Get a list of members in group/realm
+
 !who
 Get a file of members in group/realm
+
 !type
 Get group type
+
 !kill chat [GroupID]
 Kick all memebers and delete group
+
 !kill realm [RealmID]
 Kick all members and delete realm
+
 !addadmin [id|username]
 Promote an admin by id OR username *Sudo only
+
 !removeadmin [id|username]
 Demote an admin by id OR username *Sudo only
+
 !list groups
 Get a list of all groups
+
 !list realms
 Get a list of all realms
+
 !support
 Promote user to support
+
 !-support
 Demote user from support
+
 !log
 Get a logfile of current group or realm
+
 !broadcast [text]
 !broadcast Hello !
 Send text to all groups
 Only sudo users can run this command
+
 !bc [group_id] [text]
 !bc 123456789 Hello !
 This command will send text to [group_id]
+
+
 **You can use "#", "!", or "/" to begin all commands
+
+
 *Only admins and sudo can add bots in group
+
+
 *Only admins and sudo can use kick,ban,unban,newlink,setphoto,setname,lock,unlock,set rules,set about and settings commands
+
 *Only admins and sudo can use res, setowner, commands
-channel:@WaderTGTeam
+
+@TeleGold_Team
 ]],
     help_text = [[
 Commands list :
-!kick [username|id]
+
+kick [username|id]
 You can also do it by reply
-!ban [ username|id]
+
+ban [ username|id]
 You can also do it by reply
+
 !unban [id]
 You can also do it by reply
+
 !who
 Members list
+
 !modlist
 Moderators list
+
 !promote [username]
 Promote someone
+
 !demote [username]
 Demote someone
+
 !kickme
 Will kick user
+
 !about
 Group description
+
 !setphoto
 Set and locks group photo
+
 !setname [name]
 Set group name
+
 !rules
 Group rules
+
 !id
 return group id or user id
+
 !help
 Returns help text
+
 !lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
 Lock group settings
 *rtl: Kick user if Right To Left Char. is in name*
+
 !unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
 Unlock group settings
 *rtl: Kick user if Right To Left Char. is in name*
+
 !mute [all|audio|gifs|photo|video]
 mute group message types
 *If "muted" message type: user is kicked if message type is posted 
+
 !unmute [all|audio|gifs|photo|video]
 Unmute group message types
 *If "unmuted" message type: user is not kicked if message type is posted 
+
 !set rules <text>
 Set <text> as rules
+
 !set about <text>
 Set <text> as about
+
 !settings
 Returns group settings
+
 !muteslist
 Returns mutes for chat
+
 !muteuser [username]
 Mute a user in chat
 *user is kicked if they talk
 *only owners can mute | mods and owners can unmute
+
 !mutelist
 Returns list of muted users in chat
+
 !newlink
 create/revoke your group link
+
 !link
 returns group link
+
 !owner
 returns group owner id
+
 !setowner [id]
 Will set id as owner
+
 !setflood [value]
 Set [value] as flood sensitivity
+
 !stats
 Simple message statistics
+
 !save [value] <text>
 Save <text> as [value]
+
 !get [value]
 Returns text of [value]
+
 !clean [modlist|rules|about]
 Will clear [modlist|rules|about] and set it to nil
+
 !res [username]
 returns user id
 "!res @username"
+
 !log
 Returns group logs
+
 !banlist
 will return group ban list
+
 **You can use "#", "!", or "/" to begin all commands
+
+
 *Only owner and mods can add bots in group
+
+
 *Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
+
 *Only owner can use res,setowner,promote,demote and log commands
-@TeleGold_Team
+
+channel:@WaderTGTeam
 ]],
 	help_text_super =[[
 دستورات انگلیسی ربات تله گولد
@@ -691,5 +750,3 @@ our_id = 0
 now = os.time()
 math.randomseed(now)
 started = false
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
