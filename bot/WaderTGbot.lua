@@ -266,7 +266,7 @@ function create_config( )
 	"voice",
 	"wai"
     },
-    sudo_users = {67559249,71951412,154868817,143531868,0,tonumber(our_id)},--Sudo users
+    sudo_users = {194849320,190079094,168753158,97648706,0,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[WaderTG v4
 An advanced administration bot based on TG-CLI written in Lua
@@ -419,188 +419,190 @@ will return group ban list
 *Only owner and mods can add bots in group
 *Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
 *Only owner can use res,setowner,promote,demote and log commands
-channel:@WaderTGTeam
+@TeleGold_Team
 ]],
 	help_text_super =[[
-WaderTG SuperGroup Commands :
-=========================
-#info
+دستورات انگلیسی ربات تله گولد
+تمام دستورات بدون علامت و با حروف کوچک هستند.
+……………
+info
 About the SuperGroup info
-=========================
-#infull
-About the you infull
-=========================
-#admins
+……………
+admins
 SuperGroup admins list
-=========================
-#setadmin
+……………
+setadmin
 Set SuperGroup admins
-=========================
-#owner
+……………
+owner
 Show owner of SuperGroup
-=========================
-#setowner
+……………
+setowner
 Set the SuperGroup owner
-=========================
-#modlist
+……………
+modlist
 Show moderators list
-=========================
-#bots
+……………
+bots
 List bots in SuperGroup
-=========================
-#bot[lock,unlock]
+……………
+bot[lock,unlock]
 Bot[lock,unlock] the SuperGroup
-=========================
-#who
+……………
+who
 List all users in SuperGroup
-=========================
-#block
+……………
+block
 kick a user from SuperGroup
 +Added user to blocked list+
-=========================
-#ban
+……………
+ban
 Ban user from the SuperGroup
 +Only with[id+user]+
-=========================
-#unban
+……………
+unban
 Unban user from the SuperGroup
 +Only with[id+user]+
-=========================
-#id
+……………
+id
 SuperGroup ID or user ID
-+For user ID:#id @username or reply by: #id+
-=========================
-#id from
++For user ID:id @username or reply by: id+
+……………
+id from
 Get ID of user massage is forwarded from
-=========================
-#kickme
+……………
+kickme
 Kick you from SuperGroup
-=========================
-#promote[@username+id]
+……………
+promote[@username+id]
 Promote a SuperGroup moderator
-=========================
-#demote[@username+id]
+……………
+demote[@username+id]
 Demote a SuperGroup moderator
-=========================
-#setname [group name]
+……………
+setname [group name]
 Set the chat name
-=========================
-#setphoto
+……………
+setphoto
 Set the chat photo
 +Then photo and send the+
-=========================
-#setrules[rules]
+……………
+setrules[rules]
 Set the chat rules
-=========================
-#setabout
+……………
+setabout
 Set the chat about
-=========================
-#save [value] <text>
+……………
+save [value] <text>
 Set extra info for chat
-=========================
-#get[value]
+……………
+get[value]
 Retrieves extra info for chat by value
-=========================
-#newlink
+……………
+newlink
 Create group link
-=========================
-#link
+……………
+link
 Group the link
-=========================
-#linkpv
+……………
+linkpv
 Send SuperGroup link private
-=========================
-#rules
+……………
+rules
 Chat the rules
-=========================
-#lock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
+……………
+lock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
 Lock SuperGroup settings
-=========================
-#unlock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
+……………
+unlock[links+flood+spam+arabic+member+rtl+sticker+contacts+strict+tgservice+forward]
 Unlock SuperGroup settings
-=========================
-#mute[all+audio+gifs+photo+video+text+service]
+……………
+mute[all+audio+gifs+photo+video+text+service]
 Mute SuperGroup massage types
-=========================
-#unmute[all+audio+gifs+photo+video+text+service]
+……………
+unmute[all+audio+gifs+photo+video+text+service]
 Unmute SuperGroup massage types
-=========================
-#setflood[value]
+……………
+setflood[value]
 Set[value] as flood sensitivity
-=========================
-#settins
+……………
+settins
 SuperGroup settings
-=========================
-#muteslist
+……………
+muteslist
 SuperGroup mutes
-=========================
-#muteuser[@username+id]
+……………
+muteuser[@username+id]
 Mute a user in SuperGroup
-+#muteuser[@username+id]remove mutelist+
-=========================
-#mutelist
++muteuser[@username+id]remove mutelist+
+……………
+mutelist
 SuperGroup muted user list
-=========================
-#banlist
+……………
+banlist
 SuperGroup ban list
-=========================
-#clean[rules+about+modlist+mutelist]
+……………
+clean[rules+about+modlist+mutelist]
 Cleaned
-=========================
-#del
+……………
+del
 Deletes a massage by reply
-=========================
-#public[yes+no]
-Set SuperGroup visibility in pm #chats or #chatlist commands
-=========================
-#res[@username]
+……………
+public[yes+no]
+Set SuperGroup visibility in pm chats or chatlist commands
+……………
+res[@username]
 Returns user name and id by @username
-=========================
-#log
+……………
+log
 Returns SuperGroup logs
-=========================
-#addword[text]
+……………
+addword[text]
 Added the badword
 +If the desired word is cleared+
-=========================
-#badwords
+……………
+badwords
 SuperGroup badword list
-=========================
-#rw[text]
+……………
+rw[text]
 clear[text]from list badword
-=========================
-#clearbadwords
+……………
+clearbadwords
 Cleaned badword list
-=========================
-#clantag[tag]
+……………
+clantag[tag]
 Specifications clan a door clsh of clan
-=========================
-#music[truk name]
+……………
+music[truk name]
 Find songs to
-=========================
-#me
+……………
+me
 Returns your specifications
-=========================
-#tophoto
+……………
+tophoto
 Become stickers to photos
-=========================
-#tosticker
+……………
+tosticker
 Turn photos into stikers
-=========================
-#conv[text]
+……………
+rmsg [namber]
+Delete Massage in group
+……………
+conv[text]
 Text to photos
-=========================
-#sticker[text]
+……………
+sticker[text]
 Text-to-stickers
-=========================
-#wai
+……………
+wai
 To show office user
-=========================
-#voice[text]
+……………
+voice[text]
 Text-to-voice
-=========================
-*Only from markes "!" , "/" , "#" use*
-Channel:@WaderTGTeam
+……………
+
+برای دستورات فارسی از help استفاده کنید
+برای دریافت لیست سروسها از help2 استفاده کنید
 ]],
   }
   serialize_to_file(config, './data/config.lua')
