@@ -7,12 +7,12 @@ Gist
  @jorjrobot
  Unwatch 1
   Star 0
-  Fork 1 jorjrobot/WaderTG
-forked from janlou/WaderTG
+  Fork 1 jorjrobot/TeleGold
+forked from janlou/TeleGold
  Code  Pull requests 0  Wiki  Pulse  Graphs  Settings
-Branch: supergroups Find file Copy pathWaderTG/bot/WaderTGbot.lua
+Branch: supergroups Find file Copy pathWaderTG/bot/TeleGold.lua
 f950750  on 25 Apr
-@groupforspeed groupforspeed Update WaderTGbot.lua
+@groupforspeed groupforspeed Update TeleGold.lua
 1 contributor
 RawBlameHistory    751 lines (622 sloc)  15.1 KB
 package.path = package.path .. ';.luarocks/share/lua/5.2/?.lua'
